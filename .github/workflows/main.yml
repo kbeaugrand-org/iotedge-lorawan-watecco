@@ -36,5 +36,5 @@ jobs:
           password:  ${{ secrets.DOCKER_PASSWORD }}
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: ./src/build.sh
+      - name: Build the whole images and publish
+        run: chmod +x && ./src/build.sh

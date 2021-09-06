@@ -21,7 +21,7 @@ jobs:
     env:
       IMAGE_NAME: kbeaugrand/az-iotedge-watteco-decoder-module
       TAG_NAME: 0.0.1
-      MODULE_PATH: ./modules/WattecoStandardReportDecoderModule
+      MODULE_PATH: src/modules/WattecoStandardReportDecoderModule
 
     # The type of runner that the job will run on
     runs-on: ubuntu-latest

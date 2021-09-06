@@ -46,9 +46,9 @@ jobs:
         uses: docker/build-push-action@v2.7.0
         with:
           # Build's context is the set of files located in the specified PATH or URL
-          context: ${MODULE_PATH}
+          context: "${MODULE_PATH}"
           # Path to the Dockerfile
-          file: ${MODULE_PATH}/Dockerfile.amd64
+          file: "${MODULE_PATH}/Dockerfile.amd64"
           # Push is a shorthand for --output=type=registry
           push: true
           # List of SSH agent socket or keys to expose to the build
@@ -62,9 +62,9 @@ jobs:
         uses: docker/build-push-action@v2.7.0
         with:
           # Build's context is the set of files located in the specified PATH or URL
-          context: ${MODULE_PATH}
+          context: "${MODULE_PATH}"
           # Path to the Dockerfile
-          file: ${MODULE_PATH}/Dockerfile.arm32v7
+          file: "${MODULE_PATH}/Dockerfile.arm32v7"
           # Push is a shorthand for --output=type=registry
           push: true
           # List of SSH agent socket or keys to expose to the build
@@ -78,9 +78,9 @@ jobs:
         uses: docker/build-push-action@v2.7.0
         with:
           # Build's context is the set of files located in the specified PATH or URL
-          context: ${MODULE_PATH}
+          context: "${MODULE_PATH}"
           # Path to the Dockerfile
-          file: ${MODULE_PATH}/Dockerfile.arm64v8
+          file: "${MODULE_PATH}/Dockerfile.arm64v8"
           # Push is a shorthand for --output=type=registry
           push: true
           # List of SSH agent socket or keys to expose to the build
@@ -89,7 +89,7 @@ jobs:
           tags: "${IMAGE_NAME}:${TAG_NAME}-arm64v8"
 
       - name: Create the manifest
-        run: docker manifest create ${IMAGE_NAME}:${TAG_NAME}-a --amend ${IMAGE_NAME}:${TAG_NAME}-amd64 --amend ${IMAGE_NAME}:${TAG_NAME}-arm32v7 --amend ${IMAGE_NAME}:${TAG_NAME}-arm64v8
+        run: docker manifest create "${IMAGE_NAME}:${TAG_NAME}" --amend "${IMAGE_NAME}:${TAG_NAME}-amd64" --amend "${IMAGE_NAME}:${TAG_NAME}-arm32v7" --amend "${IMAGE_NAME}:${TAG_NAME}-arm64v8"
 
       - name: Publish  the manifest
-        run: docker manifest push
+        run: docker manifest push "${IMAGE_NAME}:${TAG_NAME}"

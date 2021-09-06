@@ -1,0 +1,55 @@
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+
+  # This workflow contains a single job called "build"
+  build:
+    env:
+      IMAGE_NAME: kbeaugrand/az-iotedge-watteco-decoder-module
+      TAG_NAME: 0.0.1
+      MODULE_PATH: src/modules/WattecoDecoderModule
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with: 
+          submodules: true        
+      
+      # - name: Docker Login
+      #   # You may pin to the exact commit or the version.
+      #   uses: docker/login-action@v1.10.0
+      #   with:
+      #     # Username used to log against the Docker registry
+      #     username:  ${{ secrets.DOCKER_LOGIN }}
+      #     # Password or personal access token used to log against the Docker registry
+      #     password:  ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build images
+        uses: /.github/actions/build-module
+        with:
+          image_name: kbeaugrand/az-iotedge-watteco-decoder-module
+          tag_name: ref-${GITHUB_REF#refs}
+          module_path: src/modules/WattecoDecoderModule
+          archs: [amd64, arm32v7, arm64v8]
+
+      # - name: Create the manifest
+      #   run: docker manifest create "${IMAGE_NAME}:${TAG_NAME}" --amend "${IMAGE_NAME}:${TAG_NAME}-amd64" --amend "${IMAGE_NAME}:${TAG_NAME}-arm32v7" --amend "${IMAGE_NAME}:${TAG_NAME}-arm64v8"
+
+      # - name: Publish  the manifest
+      #   run: docker manifest push "${IMAGE_NAME}:${TAG_NAME}"

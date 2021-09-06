@@ -46,7 +46,6 @@ jobs:
           image_name: kbeaugrand/az-iotedge-watteco-decoder-module
           tag_name: ref-${GITHUB_REF#refs}
           module_path: src/modules/WattecoDecoderModule
-          archs: [amd64, arm32v7, arm64v8]
 
       # - name: Create the manifest
       #   run: docker manifest create "${IMAGE_NAME}:${TAG_NAME}" --amend "${IMAGE_NAME}:${TAG_NAME}-amd64" --amend "${IMAGE_NAME}:${TAG_NAME}-arm32v7" --amend "${IMAGE_NAME}:${TAG_NAME}-arm64v8"

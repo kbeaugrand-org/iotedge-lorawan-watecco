@@ -11,15 +11,12 @@ inputs:
   module_path: 
     description: The module's source path
     required: true
-  archs:
-    description: The desired Archs [amd64, arm32v7, arm64v8]
-    required: true
 
 runs:
   using: "composite"
   strategy:
     matrix:
-      arch:  ${{ input.archs }} 
+      arch:  [amd64, arm32v7, arm64v8]
   steps:
   - name: Build and push amd64
     # You may pin to the exact commit or the version.

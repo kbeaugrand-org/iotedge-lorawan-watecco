@@ -1,0 +1,3 @@
+[submodule "EdgeSolution/modules/WattecoStandardReportDecoderModule/Codec-Report-Batch-Python"]
+	path = EdgeSolution/modules/WattecoStandardReportDecoderModule/Codec-Report-Batch-Python
+	url = https://github.com/Watteco/Codec-Report-Batch-Python

@@ -82,3 +82,9 @@ jobs:
 
       - name: Publish  the manifest
         run: docker manifest push ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }}
+
+      - name: Create the manifest
+        run: docker manifest create ${{ env.image_name }}:latest --amend ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }}-amd64 --amend ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }}-arm32v7 --amend ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }}-arm64v8
+
+      - name: Publish  the manifest
+        run: docker manifest push ${{ env.image_name }}:latest

@@ -22,7 +22,6 @@ jobs:
       matrix:
         arch:  [amd64, arm32v7, arm64v8]
 
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -43,21 +42,29 @@ jobs:
           username:  ${{ secrets.DOCKER_LOGIN }}
           # Password or personal access token used to log against the Docker registry
           password:  ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          platforms: ${{ matrix.arch }}
 
       - name: Build and push ${{ matrix.arch }}
         # You may pin to the exact commit or the version.
         uses: docker/build-push-action@v2.7.0
         with:
+          builder: ${{ steps.buildx.outputs.name }}
           # Build's context is the set of files located in the specified PATH or URL
           context: ${{ env.module_path }}
           # Path to the Dockerfile
-          file: "${{ env.module_path }}/Dockerfile.amd64"
+          file: "${{ env.module_path }}/Dockerfile.${{ matrix.arch }}"
           # Push is a shorthand for --output=type=registry
           push: true
           # List of SSH agent socket or keys to expose to the build
           ssh: # optional
           # List of tags
           tags: ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }}-${{ matrix.arch }}
+          platforms: ${{ matrix.arch }}
           
   publish: 
     runs-on: ubuntu-latest

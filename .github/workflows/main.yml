@@ -14,9 +14,9 @@ on:
   workflow_dispatch:
 
 env:
-    IMAGE_NAME: kbeaugrand/az-iotedge-watteco-decoder-module
-    TAG_NAME: 0.0.1
-    MODULE_PATH: ./modules/WattecoStandardReportDecoderModule
+  IMAGE_NAME: kbeaugrand/az-iotedge-watteco-decoder-module
+  TAG_NAME: 0.0.1
+  MODULE_PATH: ./modules/WattecoStandardReportDecoderModule
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -46,7 +46,7 @@ jobs:
         uses: docker/build-push-action@v2.7.0
         with:
           # Build's context is the set of files located in the specified PATH or URL
-          context: "${MODULE_PATH}"
+          context: $MODULE_PATH
           # Path to the Dockerfile
           file: "${MODULE_PATH}/Dockerfile.amd64"
           # Push is a shorthand for --output=type=registry
@@ -56,40 +56,40 @@ jobs:
           # List of tags
           tags: "${IMAGE_NAME}:${TAG_NAME}-amd64"
 
-      - name: Build and push arm32v7
-        # You may pin to the exact commit or the version.
-        # uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229
-        uses: docker/build-push-action@v2.7.0
-        with:
-          # Build's context is the set of files located in the specified PATH or URL
-          context: "${MODULE_PATH}"
-          # Path to the Dockerfile
-          file: "${MODULE_PATH}/Dockerfile.arm32v7"
-          # Push is a shorthand for --output=type=registry
-          push: true
-          # List of SSH agent socket or keys to expose to the build
-          ssh: # optional
-          # List of tags
-          tags: "${IMAGE_NAME}:${TAG_NAME}-arm32v7"
+      # - name: Build and push arm32v7
+      #   # You may pin to the exact commit or the version.
+      #   # uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229
+      #   uses: docker/build-push-action@v2.7.0
+      #   with:
+      #     # Build's context is the set of files located in the specified PATH or URL
+      #     context: "${MODULE_PATH}"
+      #     # Path to the Dockerfile
+      #     file: "${MODULE_PATH}/Dockerfile.arm32v7"
+      #     # Push is a shorthand for --output=type=registry
+      #     push: true
+      #     # List of SSH agent socket or keys to expose to the build
+      #     ssh: # optional
+      #     # List of tags
+      #     tags: "${IMAGE_NAME}:${TAG_NAME}-arm32v7"
 
-      - name: Build and push arm64v8
-        # You may pin to the exact commit or the version.
-        # uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229
-        uses: docker/build-push-action@v2.7.0
-        with:
-          # Build's context is the set of files located in the specified PATH or URL
-          context: "${MODULE_PATH}"
-          # Path to the Dockerfile
-          file: "${MODULE_PATH}/Dockerfile.arm64v8"
-          # Push is a shorthand for --output=type=registry
-          push: true
-          # List of SSH agent socket or keys to expose to the build
-          ssh: # optional
-          # List of tags
-          tags: "${IMAGE_NAME}:${TAG_NAME}-arm64v8"
+      # - name: Build and push arm64v8
+      #   # You may pin to the exact commit or the version.
+      #   # uses: docker/build-push-action@a66e35b9cbcf4ad0ea91ffcaf7bbad63ad9e0229
+      #   uses: docker/build-push-action@v2.7.0
+      #   with:
+      #     # Build's context is the set of files located in the specified PATH or URL
+      #     context: "${MODULE_PATH}"
+      #     # Path to the Dockerfile
+      #     file: "${MODULE_PATH}/Dockerfile.arm64v8"
+      #     # Push is a shorthand for --output=type=registry
+      #     push: true
+      #     # List of SSH agent socket or keys to expose to the build
+      #     ssh: # optional
+      #     # List of tags
+      #     tags: "${IMAGE_NAME}:${TAG_NAME}-arm64v8"
 
-      - name: Create the manifest
-        run: docker manifest create "${IMAGE_NAME}:${TAG_NAME}" --amend "${IMAGE_NAME}:${TAG_NAME}-amd64" --amend "${IMAGE_NAME}:${TAG_NAME}-arm32v7" --amend "${IMAGE_NAME}:${TAG_NAME}-arm64v8"
+      # - name: Create the manifest
+      #   run: docker manifest create "${IMAGE_NAME}:${TAG_NAME}" --amend "${IMAGE_NAME}:${TAG_NAME}-amd64" --amend "${IMAGE_NAME}:${TAG_NAME}-arm32v7" --amend "${IMAGE_NAME}:${TAG_NAME}-arm64v8"
 
-      - name: Publish  the manifest
-        run: docker manifest push "${IMAGE_NAME}:${TAG_NAME}"
+      # - name: Publish  the manifest
+      #   run: docker manifest push "${IMAGE_NAME}:${TAG_NAME}"

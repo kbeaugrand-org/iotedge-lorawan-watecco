@@ -58,6 +58,7 @@ jobs:
           tags: ${{ env.image_name }}:${{ env.tag_name }}-${{ matrix.arch }}
           
   publish: 
+    runs-on: ubuntu-latest
     steps:
       - name: Create the manifest
         run: docker manifest create ${{ env.image_name }}:${{ env.tag_name }} --amend ${{ env.image_name }}:${{ env.tag_name }}-amd64 --amend ${{ env.image_name }}:${{ env.tag_name }}-arm32v7 --amend ${{ env.image_name }}:${{ env.tag_name }}-arm64v8

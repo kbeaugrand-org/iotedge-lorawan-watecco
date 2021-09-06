@@ -13,13 +13,13 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  IMAGE_NAME: kbeaugrand/az-iotedge-watteco-decoder-module
-  TAG_NAME: 0.0.1
-  MODULE_PATH: ./modules/WattecoStandardReportDecoderModule
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  env:
+    IMAGE_NAME: kbeaugrand/az-iotedge-watteco-decoder-module
+    TAG_NAME: 0.0.1
+    MODULE_PATH: ./modules/WattecoStandardReportDecoderModule
+    
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on

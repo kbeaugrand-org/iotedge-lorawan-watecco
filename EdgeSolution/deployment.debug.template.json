@@ -51,13 +51,13 @@
           }
         },
         "modules": {
-          "WattecoStandardReportDecoderModule": {
+          "WattecoDecoder": {
             "version": "1.0",
             "type": "docker",
             "status": "running",
             "restartPolicy": "always",
             "settings": {
-              "image": "${MODULES.WattecoStandardReportDecoderModule.debug}",
+              "image": "${MODULES.WattecoDecoderModule.debug}",
               "createOptions": {
                 "ExposedPorts": {
                   "5678/tcp": {}
@@ -81,7 +81,7 @@
       "properties.desired": {
         "schemaVersion": "1.2",
         "routes": {
-          "WattecoStandardReportDecoderModuleToIoTHub": "FROM /messages/modules/WattecoStandardReportDecoderModule/outputs/* INTO $upstream"
+          "WattecoStandardReportDecoderModuleToIoTHub": "FROM /messages/outputs/* INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200

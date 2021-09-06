@@ -54,7 +54,7 @@ jobs:
           # List of SSH agent socket or keys to expose to the build
           ssh: # optional
           # List of tags
-          tags: "${IMAGE_NAME}:${TAG_NAME}-amd64"
+          tags: $IMAGE_NAME:$TAG_NAME-amd64
 
       # - name: Build and push arm32v7
       #   # You may pin to the exact commit or the version.

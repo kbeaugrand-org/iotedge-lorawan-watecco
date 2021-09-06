@@ -57,36 +57,35 @@ jobs:
           # List of tags
           tags: ${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}-amd64
 
-      # - name: Build and push arm32v7
-      #   # You may pin to the exact commit or the version.
-      #   uses: docker/build-push-action@v2.7.0
-      #   with:
-      #     # Build's context is the set of files located in the specified PATH or URL
-      #     context: "${MODULE_PATH}"
-      #     # Path to the Dockerfile
-      #     file: "${MODULE_PATH}/Dockerfile.arm32v7"
-      #     # Push is a shorthand for --output=type=registry
-      #     push: true
-      #     # List of SSH agent socket or keys to expose to the build
-      #     ssh: # optional
-      #     # List of tags
-      #     tags: "${IMAGE_NAME}:${TAG_NAME}-arm32v7"
+      - name: Build and push arm32v7
+        # You may pin to the exact commit or the version.
+        uses: docker/build-push-action@v2.7.0
+        with:
+          # Build's context is the set of files located in the specified PATH or URL
+          context: ${{ env.MODULE_PATH }}
+          # Path to the Dockerfile
+          file: "${{ env.MODULE_PATH }}/Dockerfile.arm32v7"
+          # Push is a shorthand for --output=type=registry
+          push: false
+          # List of SSH agent socket or keys to expose to the build
+          ssh: # optional
+          # List of tags
+          tags: ${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}-arm32v7
 
-      # - name: Build and push arm64v8
-      #   # You may pin to the exact commit or the version.
-      #   uses: docker/build-push-action@v2.7.0
-      #   with:
-      #     # Build's context is the set of files located in the specified PATH or URL
-      #     context: "${MODULE_PATH}"
-      #     # Path to the Dockerfile
-      #     file: "${MODULE_PATH}/Dockerfile.arm64v8"
-      #     # Push is a shorthand for --output=type=registry
-      #     push: true
-      #     # List of SSH agent socket or keys to expose to the build
-      #     ssh: # optional
-      #     # List of tags
-      #     tags: "${IMAGE_NAME}:${TAG_NAME}-arm64v8"
-
+      - name: Build and push arm64v8
+        uses: docker/build-push-action@v2.7.0
+        with:
+          # Build's context is the set of files located in the specified PATH or URL
+          context: ${{ env.MODULE_PATH }}
+          # Path to the Dockerfile
+          file: "${{ env.MODULE_PATH }}/Dockerfile.arm64v8"
+          # Push is a shorthand for --output=type=registry
+          push: false
+          # List of SSH agent socket or keys to expose to the build
+          ssh: # optional
+          # List of tags
+          tags: ${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}-arm64v8
+    
       # - name: Create the manifest
       #   run: docker manifest create "${IMAGE_NAME}:${TAG_NAME}" --amend "${IMAGE_NAME}:${TAG_NAME}-amd64" --amend "${IMAGE_NAME}:${TAG_NAME}-arm32v7" --amend "${IMAGE_NAME}:${TAG_NAME}-arm64v8"
 

@@ -1,4 +1,4 @@
-name: Continuous Build
+name: Continuous Deployment
 
 # Controls when the workflow will run
 on:
@@ -33,14 +33,14 @@ jobs:
         with: 
           submodules: true        
       
-      # - name: Docker Login
-      #   # You may pin to the exact commit or the version.
-      #   uses: docker/login-action@v1.10.0
-      #   with:
-      #     # Username used to log against the Docker registry
-      #     username:  ${{ secrets.DOCKER_LOGIN }}
-      #     # Password or personal access token used to log against the Docker registry
-      #     password:  ${{ secrets.DOCKER_PASSWORD }}
+      - name: Docker Login
+        # You may pin to the exact commit or the version.
+        uses: docker/login-action@v1.10.0
+        with:
+          # Username used to log against the Docker registry
+          username:  ${{ secrets.DOCKER_LOGIN }}
+          # Password or personal access token used to log against the Docker registry
+          password:  ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build and push ${{ matrix.arch }}
         # You may pin to the exact commit or the version.
@@ -51,14 +51,16 @@ jobs:
           # Path to the Dockerfile
           file: "${{ env.module_path }}/Dockerfile.amd64"
           # Push is a shorthand for --output=type=registry
-          push: false
+          push: true
           # List of SSH agent socket or keys to expose to the build
           ssh: # optional
           # List of tags
-          # tags: ${{ env.IMAGE_NAME }}:${{ env.TAG_NAME }}-${{ matrix.arch }}
+          tags: ${{ env.image_name }}:${{ env.tag_name }}-${{ matrix.arch }}
           
-      # - name: Create the manifest
-      #   run: docker manifest create "${IMAGE_NAME}:${TAG_NAME}" --amend "${IMAGE_NAME}:${TAG_NAME}-amd64" --amend "${IMAGE_NAME}:${TAG_NAME}-arm32v7" --amend "${IMAGE_NAME}:${TAG_NAME}-arm64v8"
+  publish: 
+    steps:
+      - name: Create the manifest
+        run: docker manifest create ${{ env.image_name }}:${{ env.tag_name }} --amend ${{ env.image_name }}:${{ env.tag_name }}-amd64 --amend ${{ env.image_name }}:${{ env.tag_name }}-arm32v7 --amend ${{ env.image_name }}:${{ env.tag_name }}-arm64v8
 
-      # - name: Publish  the manifest
-      #   run: docker manifest push "${IMAGE_NAME}:${TAG_NAME}"
+      - name: Publish  the manifest
+        run: docker manifest push ${{ env.image_name }}:${{ env.tag_name }}

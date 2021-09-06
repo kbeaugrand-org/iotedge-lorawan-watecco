@@ -46,8 +46,6 @@ jobs:
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
-        with:
-          platforms: ${{ matrix.arch }}
 
       - name: Build and push ${{ matrix.arch }}
         # You may pin to the exact commit or the version.

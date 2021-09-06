@@ -18,7 +18,7 @@ jobs:
         arch:  [amd64, arm32v7, arm64v8]
     env:
       image_name: kbeaugrand/az-iotedge-watteco-decoder-module
-      tag_name: ${GITHUB_HEAD_REF}
+      tag_name: ${GITHUB_REF##*/}
       module_path: src/modules/WattecoDecoderModule
 
     # Steps represent a sequence of tasks that will be executed as part of the job

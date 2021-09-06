@@ -41,7 +41,7 @@ jobs:
       #     password:  ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build images
-        uses: /.github/actions/build-module
+        uses: ./.github/actions/build-module
         with:
           image_name: kbeaugrand/az-iotedge-watteco-decoder-module
           tag_name: ref-${GITHUB_REF#refs}

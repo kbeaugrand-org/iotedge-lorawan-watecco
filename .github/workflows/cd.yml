@@ -6,6 +6,11 @@ on:
     types: [published]
   workflow_dispatch:
 
+
+env:
+  image_name: kbeaugrand/az-iotedge-watteco-decoder-module
+  module_path: src/modules/WattecoDecoderModule
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
@@ -16,9 +21,7 @@ jobs:
     strategy:
       matrix:
         arch:  [amd64, arm32v7, arm64v8]
-    env:
-      image_name: kbeaugrand/az-iotedge-watteco-decoder-module
-      module_path: src/modules/WattecoDecoderModule
+
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

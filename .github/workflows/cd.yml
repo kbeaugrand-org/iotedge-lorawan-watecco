@@ -18,7 +18,6 @@ jobs:
         arch:  [amd64, arm32v7, arm64v8]
     env:
       image_name: kbeaugrand/az-iotedge-watteco-decoder-module
-      tag_name: ${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
       module_path: src/modules/WattecoDecoderModule
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -26,7 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with: 
-          submodules: true        
+          submodules: true     
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch   
       
       - name: Docker Login
         # You may pin to the exact commit or the version.
@@ -50,14 +54,19 @@ jobs:
           # List of SSH agent socket or keys to expose to the build
           ssh: # optional
           # List of tags
-          tags: ${{ env.image_name }}:${{ env.tag_name }}-${{ matrix.arch }}
+          tags: ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }}-${{ matrix.arch }}
           
   publish: 
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch   
+      
       - name: Create the manifest
-        run: docker manifest create ${{ env.image_name }}:${{ env.tag_name }} --amend ${{ env.image_name }}:${{ env.tag_name }}-amd64 --amend ${{ env.image_name }}:${{ env.tag_name }}-arm32v7 --amend ${{ env.image_name }}:${{ env.tag_name }}-arm64v8
+        run: docker manifest create ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }} --amend ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }}-amd64 --amend ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }}-arm32v7 --amend ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }}-arm64v8
 
       - name: Publish  the manifest
-        run: docker manifest push ${{ env.image_name }}:${{ env.tag_name }}
+        run: docker manifest push ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }}

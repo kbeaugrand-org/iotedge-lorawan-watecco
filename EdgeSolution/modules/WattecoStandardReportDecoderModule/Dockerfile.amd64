@@ -1,0 +1,15 @@
+FROM amd64/python:3.7-slim-buster
+
+WORKDIR /app
+
+COPY --from=builder /app/Codec-Report-Standard-Python/construct-2.8.12 /lib/
+COPY --from=builder /app/Codec-Report-Standard-Python/dicttoxml-1.7.4 /lib/
+
+RUN pip install fastapi uvicorn
+
+EXPOSE 80
+
+RUN cd /lib/construct-2.8.12 && python setup.py install
+RUN cd /lib/dicttoxml-1.7.4 && python setup.py install
+
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]

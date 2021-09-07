@@ -62,7 +62,7 @@ jobs:
           ssh: # optional
           # List of tags
           tags: ${{ env.image_name }}:${{ steps.extract_branch.outputs.branch }}-${{ matrix.arch }}
-          platforms: ${{ matrix.arch }}
+          platforms: linux/${{ matrix.arch }}
           
   publish: 
     runs-on: ubuntu-latest

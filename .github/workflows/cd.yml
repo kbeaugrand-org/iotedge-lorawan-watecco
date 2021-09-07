@@ -24,7 +24,7 @@ jobs:
           - name: amd64
             platformName: linux/amd64
           - name: arm32v7
-            platformName: linux/arm32/v7
+            platformName: linux/arm/v7
           - name: arm64v8
             platformName: linux/arm64/v8
 

@@ -2,7 +2,7 @@
 # Azure IoT Edge LoRaWAN Watteco Sensors Decoder
 
 [![Build](https://github.com/kbeaugrand/iotedge-lorawan-watecco-decoder/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/kbeaugrand/iotedge-lorawan-watecco-decoder/actions/workflows/ci.yml)
-[![Continuous Deployment](https://github.com/kbeaugrand/iotedge-lorawan-watecco-decoder/actions/workflows/cd.yml/badge.svg?event=release)](https://github.com/kbeaugrand/iotedge-lorawan-watecco-decoder/actions/workflows/cd.yml)
+[![Continuous Deployment](https://github.com/kbeaugrand/iotedge-lorawan-watecco-decoder/actions/workflows/cd.yml/badge.svg)](https://github.com/kbeaugrand/iotedge-lorawan-watecco-decoder/actions/workflows/cd.yml)
 
 ## Description
 

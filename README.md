@@ -57,7 +57,7 @@ You can add this module to you IoT Edge Deployment by adding this module definit
 ...
     "WattecoDecoder": {
         "settings": {
-            "image": "kbeaugrand/az-iotedge-watteco-decoder-module:0.0.1",
+            "image": "kbeaugrand/az-iotedge-watteco-decoder-module:latest",
             "createOptions": ""
         },
         "type": "docker",
@@ -67,6 +67,29 @@ You can add this module to you IoT Edge Deployment by adding this module definit
     }
 ...
 }
+```
+
+## Tests
+
+You can use this project to launch the decoder and test manually test it.
+
+### Prerequisites
+
+* VSCode (with Azure IoT Toolkit extension installed)
+    * [VS Code](https://code.visualstudio.com/)
+    * [Azure IoT Toolkit Extension](https://marketplace.visualstudio.com/items?itemName=vsciot-vscode.azure-iot-toolkit)
+* Azure Subscription
+* Azure IoT Hub Resource in your subscription
+* Setup Azure IoT Edge Simulator
+
+> For more information about prerequisites: [Use VS Code as IoT Hub Device Simulator — Say Hello to Azure IoT Hub in 5 Minutes](https://devblogs.microsoft.com/iotdev/use-vs-code-as-iot-hub-device-simulator-say-hello-to-azure-iot-hub-in-5-minutes/)
+
+### Launch
+
+Simply execute the "Azure IoT Edge: Build and Run IoT Edge Solution in Simulator" command in Visual Studio Code and in terminal type: 
+
+```sh
+curl --location --request GET 'http://localhost:8080/api/vaquaoplus?payload=cjAAAAExAiHxvgRfuAfwkOwVZER7CS7pHsBXsJPYABmAAGQFIGuZ2Q4MySmlqtkXyG5Z&devEUI=000000000000000000&fport=125'
 ```
 
 ## Credits

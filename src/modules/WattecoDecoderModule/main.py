@@ -35,7 +35,10 @@ def parseUnitaryFrame(payload: str):
 
     frame = json.loads(Decoding_JSON(inputData, False))
 
-    return frame
+    result = {}
+    result[frame['ClusterID']] = frame['Data'] 
+
+    return result
 
 @app.get("/api/stdframe")
 def S0Decoder(devEUI: str, payload: str, fport: int):

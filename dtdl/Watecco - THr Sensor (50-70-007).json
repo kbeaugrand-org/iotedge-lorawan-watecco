@@ -1,0 +1,216 @@
+[
+  {
+    "@id": "dtmi:kbeaugrand:watecco:THr;1",
+    "@type": "Interface",
+    "contents": [
+      {
+        "@id": "dtmi:kbeaugrand:watecco:THr:Temperature;1",
+        "@type": [
+          "Telemetry",
+          "Temperature"
+        ],
+        "displayName": {
+          "en": "Temperature"
+        },
+        "name": "Temperature",
+        "schema": "double",
+        "unit": "degreeCelsius"
+      },
+      {
+        "@id": "dtmi:kbeaugrand:watecco:THr:Humidity;1",
+        "@type": [
+          "Telemetry",
+          "Humidity"
+        ],
+        "displayName": {
+          "en": "Humidity"
+        },
+        "name": "Humidity",
+        "schema": "double",
+        "unit": "percent"
+      },
+      {
+        "@id": "dtmi:kbeaugrand:watecco:THr:SinglePrecision;1",
+        "@type": "Telemetry",
+        "displayName": {
+          "en": "SinglePrecision"
+        },
+        "name": "SinglePrecision",
+        "schema": "integer",
+        "unit": "percent"
+      }
+    ],
+    "displayName": {
+      "en": "Watecco - THr (50-70-007)"
+    },
+    "extends": [
+      "dtmi:kbeaugrand:watecco:THr:LoRaDevice;1"
+    ],
+    "@context": [
+      "dtmi:iotcentral:context;2",
+      "dtmi:dtdl:context;2"
+    ]
+  },
+  {
+    "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice;1",
+    "@type": "Interface",
+    "contents": [
+      {
+        "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:AppEUI;1",
+        "@type": "Property",
+        "description": {
+          "en": "This is the unique ID of the Application server."
+        },
+        "displayName": {
+          "en": "AppEUI"
+        },
+        "name": "AppEUI",
+        "schema": "string",
+        "writable": true
+      },
+      {
+        "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:AppKey;1",
+        "@type": "Property",
+        "description": {
+          "en": "The data encryption key used to \"encode\" the messages between the end nodes and the Application Server"
+        },
+        "displayName": {
+          "en": "AppKey"
+        },
+        "name": "AppKey",
+        "schema": "string",
+        "writable": true
+      },
+      {
+        "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:SensorDecoder;1",
+        "@type": "Property",
+        "description": {
+          "en": "The name of an integrated decoder function or the URI to a decoder in a custom decoder module in the format: http://modulename/api/decodername."
+        },
+        "displayName": {
+          "en": "SensorDecoder"
+        },
+        "name": "SensorDecoder",
+        "schema": "string",
+        "writable": true
+      },
+      {
+        "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate;1",
+        "@type": "Property",
+        "description": {
+          "en": "Rx2DataRate (Receive window 2 data rate, currently only supported for OTAA devices): Any of the allowed data rates."
+        },
+        "displayName": {
+          "en": "RX2DataRate"
+        },
+        "name": "RX2DataRate",
+        "schema": {
+          "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema;1",
+          "@type": "Enum",
+          "displayName": {
+            "en": "Enum"
+          },
+          "enumValues": [
+            {
+              "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema:SF12BW125;1",
+              "displayName": {
+                "en": "SF12BW125"
+              },
+              "enumValue": "SF12BW125",
+              "name": "SF12BW125"
+            },
+            {
+              "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema:SF11BW125;1",
+              "displayName": {
+                "en": "SF11BW125"
+              },
+              "enumValue": "SF11BW125",
+              "name": "SF11BW125"
+            },
+            {
+              "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema:SF10BW125;1",
+              "displayName": {
+                "en": "SF10BW125"
+              },
+              "enumValue": "SF10BW125",
+              "name": "SF10BW125"
+            },
+            {
+              "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema:SF8BW125;1",
+              "displayName": {
+                "en": "SF8BW125"
+              },
+              "enumValue": "SF8BW125",
+              "name": "SF8BW125"
+            },
+            {
+              "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema:SF7BW250;1",
+              "displayName": {
+                "en": "SF7BW250"
+              },
+              "enumValue": "SF7BW250",
+              "name": "SF7BW250"
+            },
+            {
+              "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema:SF7BW125;1",
+              "displayName": {
+                "en": "SF7BW125"
+              },
+              "enumValue": "SF7BW125",
+              "name": "SF7BW125"
+            },
+            {
+              "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema:SF9BW125;1",
+              "displayName": {
+                "en": "SF9BW125"
+              },
+              "enumValue": "SF9BW125",
+              "name": "SF9BW125"
+            },
+            {
+              "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema:SF8BW500;1",
+              "displayName": {
+                "en": "SF8BW500"
+              },
+              "enumValue": "SF8BW500",
+              "name": "SF8BW500"
+            },
+            {
+              "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema:SF11BW500;1",
+              "displayName": {
+                "en": "SF11BW500"
+              },
+              "enumValue": "SF11BW500",
+              "name": "SF11BW500"
+            },
+            {
+              "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema:SF10BW500;1",
+              "displayName": {
+                "en": "SF10BW500"
+              },
+              "enumValue": "SF10BW500",
+              "name": "SF10BW500"
+            },
+            {
+              "@id": "dtmi:kbeaugrand:watecco:THr:LoRaDevice:RX2DataRate:schema:SF9BW500;1",
+              "displayName": {
+                "en": "SF9BW500"
+              },
+              "enumValue": "SF9BW500",
+              "name": "SF9BW500"
+            }
+          ],
+          "valueSchema": "string"
+        },
+        "writable": true
+      }
+    ],
+    "displayName": {
+      "en": "LoRa Interface"
+    },
+    "@context": [
+      "dtmi:iotcentral:context;2",
+      "dtmi:dtdl:context;2"
+    ]
+  }
+]

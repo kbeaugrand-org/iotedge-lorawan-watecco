@@ -15,6 +15,8 @@ app = FastAPI()
 
 def parseFor(tagz: int, commands, payload: str):
     splited_commands=br_uncompress.split_commands(commands)
+    print(splited_commands)
+
     inputData = base64.b64decode(payload).hex()
 
     if ((hex_to_array(inputData)[0] % 2) == 0): 
@@ -37,6 +39,9 @@ def parseUnitaryFrame(payload: str):
 
     result = {}
     result[frame['ClusterID']] = frame['Data'] 
+
+    if (frame['AttributeID'] == "NodePowerDescriptor"):
+        result[frame['ClusterID']]['DisposableBatteryVoltage'] = result[frame['ClusterID']]['DisposableBatteryVoltage'] / 1000
 
     return result
 
@@ -82,7 +87,11 @@ def FlashoDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/vaquaoplus")
 def VAQAOPlusDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(3, ['0,1,4,OCC', '1,10,7,T', '2,100,6,H', '3,10,6,CO2', '4,10,6,COV', '5,10,6,LUX', '6,10,6,P'], payload)
+    result = parseFor(3, ['0,1,4,OCC', '1,10,7,T', '2,100,6,H', '3,10,6,CO2', '4,10,6,COV', '5,10,6,LUX', '6,10,6,P'], payload)
+
+    result['T'] = result['T'] / 100
+
+    return result
 
 @app.get("/api/t")
 def TDecoder(devEUI: str, payload: str, fport: int):
@@ -110,4 +119,8 @@ def RemoteTemperature2CTNDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/vaquao")
 def VAQAODecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(3, ['1,10,7,T' ,'2,100,6,H', '3,10,6,CO2', '4,10,6,COV'], payload)
+    result = parseFor(3, ['1,10,7,T' ,'2,100,6,H', '3,10,6,CO2', '4,10,6,COV'], payload)
+
+    result['T'] = result['T'] / 100
+
+    return result

@@ -26,8 +26,14 @@ def parseFor(tagz: int, commands, payload: str):
         result["timestamp"] = batch["batch_absolute_timestamp"]
 
         for x in batch["dataset"]: 
-            result[x["data"]["label_name"]] = x["data"]["value"]
-        
+            value = x["data"]["value"]
+            label = x["data"]["label_name"]
+
+            if (label ==  "Temperature"):
+                value = value / 100
+
+            result[label] = value
+      
         return result
     else:
         return parseUnitaryFrame(payload)
@@ -85,14 +91,6 @@ def THDecoder(devEUI: str, payload: str, fport: int):
 def FlashoDecoder(devEUI: str, payload: str, fport: int):
     return parseFor(1, ['0,1,10,Index', '1,100,6,BatteryLevel'], payload)
 
-@app.get("/api/vaquaoplus")
-def VAQAOPlusDecoder(devEUI: str, payload: str, fport: int):
-    result = parseFor(3, ['0,1,4,OCC', '1,10,7,T', '2,100,6,H', '3,10,6,CO2', '4,10,6,COV', '5,10,6,LUX', '6,10,6,P'], payload)
-
-    result['T'] = result['T'] / 100
-
-    return result
-
 @app.get("/api/t")
 def TDecoder(devEUI: str, payload: str, fport: int):
     return parseFor(2, ['0,10,7,Temperature', '2,1,6,BatteryLevel', '3,1,1,OpenCase'], payload)
@@ -119,8 +117,8 @@ def RemoteTemperature2CTNDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/vaquao")
 def VAQAODecoder(devEUI: str, payload: str, fport: int):
-    result = parseFor(3, ['1,10,7,T' ,'2,100,6,H', '3,10,6,CO2', '4,10,6,COV'], payload)
+    return parseFor(3, ['1,10,7,Temperature' ,'2,100,6,RelativeHumidity', '3,10,6,CO2', '4,10,6,COV'], payload)
 
-    result['T'] = result['T'] / 100
-
-    return result
+@app.get("/api/vaquaoplus")
+def VAQAOPlusDecoder(devEUI: str, payload: str, fport: int):
+    return parseFor(3, ['0,1,4,Occupancy', '1,10,7,Temperature', '2,100,6,RelativeHumidity', '3,10,6,CO2', '4,10,6,COV', '5,10,6,LUX', '6,10,6,Pressure'], payload)

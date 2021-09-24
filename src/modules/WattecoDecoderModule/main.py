@@ -32,6 +32,9 @@ def parseFor(tagz: int, commands, payload: str):
             if (label ==  "Temperature"):
                 value = value / 100
 
+            if (label ==  "RelativeHumidity"):
+                value = value / 100
+
             result[label] = value
       
         return result

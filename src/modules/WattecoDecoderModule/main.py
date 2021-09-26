@@ -52,6 +52,15 @@ def parseUnitaryFrame(payload: str):
     if (frame['AttributeID'] == "NodePowerDescriptor"):
         result[frame['ClusterID']]['DisposableBatteryVoltage'] = result[frame['ClusterID']]['DisposableBatteryVoltage'] / 1000
 
+    if (frame['AttributeID'] == "Occupancy"):
+        occupancy = 0;
+        for item in frame['Data']:
+            print (item)
+            if frame['Data'][item] == 1:
+              occupancy = 1
+
+        result['Occupancy'] = occupancy
+
     return result
 
 @app.get("/api/stdframe")

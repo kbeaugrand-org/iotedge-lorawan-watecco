@@ -1,10 +1,6 @@
 [
     {
-<<<<<<< HEAD:dtdl/Watteco - VAQA'O Sensor (50-70-168).json
         "@id": "dtmi:watteco:vaqaoplus;1",
-=======
-        "@id": "dtmi:watteco:vaqaoplus;2",
->>>>>>> de60e38 (Rename vaquao to vaqao):dtdl/Watecco - VAQA'O Sensor (50-70-168).json
         "@type": "Interface",
         "contents": [
             {

@@ -1,6 +1,6 @@
 [
   {
-    "@id": "dtmi:watteco:THr;2",
+    "@id": "dtmi:watteco:THr;1",
     "@type": "Interface",
     "contents": [
       {

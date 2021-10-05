@@ -1,189 +1,614 @@
 [
   {
-    "@id": "dtmi:kbeaugrand:watecco:SensO;1",
-    "@type": "Interface",
-    "contents": [
-      {
-        "@id": "dtmi:kbeaugrand:watecco:SensO:Volume;1",
-        "@type": "Telemetry",
-        "displayName": {
-          "en": "Volume"
-        },
-        "name": "Volume",
-        "schema": "integer"
-      }
-    ],
-    "displayName": {
-      "en": "Watecco - SensO (50-70-011)"
-    },
-    "extends": [
-      "dtmi:kbeaugrand:watecco:SensO:LoRaDevice;1"
-    ],
-    "@context": [
-      "dtmi:iotcentral:context;2",
-      "dtmi:dtdl:context;2"
-    ]
+      "@id": "dtmi:watteco:SensO;1",
+      "@type": "Interface",
+      "contents": [
+          {
+              "@id": "dtmi:watteco:SensO:data;1",
+              "@type": "Telemetry",
+              "comment": "VaqaO Sensors data",
+              "displayName": {
+                  "en": "data"
+              },
+              "name": "data",
+              "schema": {
+                  "@id": "dtmi:watteco:SensO:data:schema;1",
+                  "@type": "Object",
+                  "displayName": {
+                      "en": "Object"
+                  },
+                  "fields": [
+                      {
+                          "@id": "dtmi:watteco:SensO:data:schema:Temperature;1",
+                          "displayName": {
+                              "en": "Temperature"
+                          },
+                          "name": "Temperature",
+                          "schema": "double"
+                      },
+                      {
+                          "@id": "dtmi:watteco:SensO:data:schema:RelativeHumidity;1",
+                          "displayName": {
+                              "en": "RelativeHumidity"
+                          },
+                          "name": "RelativeHumidity",
+                          "schema": "double"
+                      },
+                      {
+                          "@id": "dtmi:watteco:SensO:data:schema:CO2;1",
+                          "displayName": {
+                              "en": "CO2"
+                          },
+                          "name": "CO2",
+                          "schema": "double"
+                      },
+                      {
+                          "@id": "dtmi:watteco:SensO:data:schema:COV;1",
+                          "displayName": {
+                              "en": "COV"
+                          },
+                          "name": "COV",
+                          "schema": "double"
+                      },
+                      {
+                          "@id": "dtmi:watteco:SensO:data:schema:LUX;1",
+                          "displayName": {
+                              "en": "LUX"
+                          },
+                          "name": "LUX",
+                          "schema": "double"
+                      },
+                      {
+                          "@id": "dtmi:watteco:SensO:data:schema:Pressure;1",
+                          "displayName": {
+                              "en": "Pressure"
+                          },
+                          "name": "Pressure",
+                          "schema": "double"
+                      },
+                      {
+                          "@id": "dtmi:watteco:SensO:data:schema:Occupancy;1",
+                          "displayName": {
+                              "en": "Occupancy"
+                          },
+                          "name": "Occupancy",
+                          "schema": {
+                              "@type": "Enum",
+                              "enumValues": [
+                                  {
+                                      "displayName": {
+                                          "en": "Occupied"
+                                      },
+                                      "enumValue": 1,
+                                      "name": "Occupied"
+                                  },
+                                  {
+                                      "displayName": {
+                                          "en": "Vacant"
+                                      },
+                                      "enumValue": 0,
+                                      "name": "Vacant"
+                                  }
+                              ],
+                              "valueSchema": "integer"
+                          }
+                      },
+                      {
+                          "@id": "dtmi:watteco:SensO:data:schema:Configuration;1",
+                          "displayName": {
+                              "en": "Configuration"
+                          },
+                          "name": "Configuration",
+                          "schema": {
+                              "@id": "dtmi:watteco:SensO:data:schema:Configuration:schema;1",
+                              "@type": "Object",
+                              "fields": [
+                                  {
+                                      "@id": "dtmi:watteco:SensO:data:schema:Configuration:schema:CurrentPowerMode;1",
+                                      "displayName": {
+                                          "en": "CurrentPowerMode"
+                                      },
+                                      "name": "CurrentPowerMode",
+                                      "schema": "string"
+                                  },
+                                  {
+                                      "@id": "dtmi:watteco:SensO:data:schema:Configuration:schema:AvailablePowerSourceBitField;1",
+                                      "displayName": {
+                                          "en": "AvailablePowerSourceBitField"
+                                      },
+                                      "name": "AvailablePowerSourceBitField",
+                                      "schema": "integer"
+                                  },
+                                  {
+                                      "@id": "dtmi:watteco:SensO:data:schema:Configuration:schema:DisposableBatteryVoltage;1",
+                                      "displayName": {
+                                          "en": "DisposableBatteryVoltage"
+                                      },
+                                      "name": "DisposableBatteryVoltage",
+                                      "schema": "double"
+                                  },
+                                  {
+                                      "@id": "dtmi:watteco:SensO:data:schema:Configuration:schema:CurrentPowerSource;1",
+                                      "displayName": {
+                                          "en": "CurrentPowerSource"
+                                      },
+                                      "name": "CurrentPowerSource",
+                                      "schema": "string"
+                                  }
+                              ]
+                          }
+                      }
+                  ]
+              }
+          }
+      ],
+      "extends": [
+          "dtmi:kbeaugrand:watecco:SensO:LoRaDevice;1"
+      ],
+      "@context": [
+          "dtmi:iotcentral:context;2",
+          "dtmi:dtdl:context;2"
+      ]
   },
   {
-    "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice;1",
-    "@type": "Interface",
-    "contents": [
-      {
-        "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:AppEUI;1",
-        "@type": "Property",
-        "description": {
-          "en": "This is the unique ID of the Application server."
-        },
-        "displayName": {
-          "en": "AppEUI"
-        },
-        "name": "AppEUI",
-        "schema": "string",
-        "writable": true
-      },
-      {
-        "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:AppKey;1",
-        "@type": "Property",
-        "description": {
-          "en": "The data encryption key used to \"encode\" the messages between the end nodes and the Application Server"
-        },
-        "displayName": {
-          "en": "AppKey"
-        },
-        "name": "AppKey",
-        "schema": "string",
-        "writable": true
-      },
-      {
-        "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:SensorDecoder;1",
-        "@type": "Property",
-        "description": {
-          "en": "The name of an integrated decoder function or the URI to a decoder in a custom decoder module in the format: http://modulename/api/decodername."
-        },
-        "displayName": {
-          "en": "SensorDecoder"
-        },
-        "name": "SensorDecoder",
-        "schema": "string",
-        "writable": true
-      },
-      {
-        "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate;1",
-        "@type": "Property",
-        "description": {
-          "en": "Rx2DataRate (Receive window 2 data rate, currently only supported for OTAA devices): Any of the allowed data rates."
-        },
-        "displayName": {
-          "en": "RX2DataRate"
-        },
-        "name": "RX2DataRate",
-        "schema": {
-          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema;1",
-          "@type": "Enum",
-          "displayName": {
-            "en": "Enum"
+      "@context": [
+          "dtmi:iotcentral:context;2",
+          "dtmi:dtdl:context;2"
+      ],
+      "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice;1",
+      "@type": [
+          "Interface",
+          "NamedInterface"
+      ],
+      "contents": [
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:AppEUI;1",
+              "@type": "Property",
+              "description": {
+                  "en": "This is the unique ID of the Application server."
+              },
+              "displayName": {
+                  "en": "AppEUI"
+              },
+              "name": "AppEUI",
+              "schema": "string",
+              "writable": true
           },
-          "enumValues": [
-            {
-              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF12BW125;1",
-              "displayName": {
-                "en": "SF12BW125"
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:AppKey;1",
+              "@type": "Property",
+              "description": {
+                  "en": "The data encryption key used to \"encode\" the messages between the end nodes and the Application Server"
               },
-              "enumValue": "SF12BW125",
-              "name": "SF12BW125"
-            },
-            {
-              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF11BW125;1",
               "displayName": {
-                "en": "SF11BW125"
+                  "en": "AppKey"
               },
-              "enumValue": "SF11BW125",
-              "name": "SF11BW125"
-            },
-            {
-              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF10BW125;1",
+              "name": "AppKey",
+              "schema": "string",
+              "writable": true
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:SensorDecoder;1",
+              "@type": "Property",
+              "description": {
+                  "en": "The name of an integrated decoder function or the URI to a decoder in a custom decoder module in the format: http://modulename/api/decodername."
+              },
               "displayName": {
-                "en": "SF10BW125"
+                  "en": "SensorDecoder"
               },
-              "enumValue": "SF10BW125",
-              "name": "SF10BW125"
-            },
-            {
-              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF8BW125;1",
+              "name": "SensorDecoder",
+              "schema": "string",
+              "writable": true
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate;1",
+              "@type": "Property",
+              "description": {
+                  "en": "Rx2DataRate (Receive window 2 data rate, currently only supported for OTAA devices): Any of the allowed data rates."
+              },
               "displayName": {
-                "en": "SF8BW125"
+                  "en": "RX2DataRate"
               },
-              "enumValue": "SF8BW125",
-              "name": "SF8BW125"
-            },
-            {
-              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF7BW250;1",
+              "name": "RX2DataRate",
+              "schema": {
+                  "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema;1",
+                  "@type": "Enum",
+                  "displayName": {
+                      "en": "Enum"
+                  },
+                  "enumValues": [
+                      {
+                          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF12BW125;1",
+                          "displayName": {
+                              "en": "SF12BW125"
+                          },
+                          "enumValue": "SF12BW125",
+                          "name": "SF12BW125"
+                      },
+                      {
+                          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF11BW125;1",
+                          "displayName": {
+                              "en": "SF11BW125"
+                          },
+                          "enumValue": "SF11BW125",
+                          "name": "SF11BW125"
+                      },
+                      {
+                          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF10BW125;1",
+                          "displayName": {
+                              "en": "SF10BW125"
+                          },
+                          "enumValue": "SF10BW125",
+                          "name": "SF10BW125"
+                      },
+                      {
+                          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF8BW125;1",
+                          "displayName": {
+                              "en": "SF8BW125"
+                          },
+                          "enumValue": "SF8BW125",
+                          "name": "SF8BW125"
+                      },
+                      {
+                          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF7BW250;1",
+                          "displayName": {
+                              "en": "SF7BW250"
+                          },
+                          "enumValue": "SF7BW250",
+                          "name": "SF7BW250"
+                      },
+                      {
+                          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF7BW125;1",
+                          "displayName": {
+                              "en": "SF7BW125"
+                          },
+                          "enumValue": "SF7BW125",
+                          "name": "SF7BW125"
+                      },
+                      {
+                          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF9BW125;1",
+                          "displayName": {
+                              "en": "SF9BW125"
+                          },
+                          "enumValue": "SF9BW125",
+                          "name": "SF9BW125"
+                      },
+                      {
+                          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF8BW500;1",
+                          "displayName": {
+                              "en": "SF8BW500"
+                          },
+                          "enumValue": "SF8BW500",
+                          "name": "SF8BW500"
+                      },
+                      {
+                          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF11BW500;1",
+                          "displayName": {
+                              "en": "SF11BW500"
+                          },
+                          "enumValue": "SF11BW500",
+                          "name": "SF11BW500"
+                      },
+                      {
+                          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF10BW500;1",
+                          "displayName": {
+                              "en": "SF10BW500"
+                          },
+                          "enumValue": "SF10BW500",
+                          "name": "SF10BW500"
+                      },
+                      {
+                          "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF9BW500;1",
+                          "displayName": {
+                              "en": "SF9BW500"
+                          },
+                          "enumValue": "SF9BW500",
+                          "name": "SF9BW500"
+                      }
+                  ],
+                  "valueSchema": "string"
+              },
+              "writable": true
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:tmst;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": "Internal timestamp of \"RX finished\" event (32b unsigned)"
+              },
               "displayName": {
-                "en": "SF7BW250"
+                  "en": "TimeStamp"
               },
-              "enumValue": "SF7BW250",
-              "name": "SF7BW250"
-            },
-            {
-              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF7BW125;1",
+              "name": "tmst",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:time;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": "UTC time of pkt RX, us precision, ISO 8601 'compact' format"
+              },
               "displayName": {
-                "en": "SF7BW125"
+                  "en": "Time"
               },
-              "enumValue": "SF7BW125",
-              "name": "SF7BW125"
-            },
-            {
-              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF9BW125;1",
+              "name": "time",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:tmms;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": "GPS time of pkt RX, number of milliseconds since 06.Jan.1980"
+              },
               "displayName": {
-                "en": "SF9BW125"
+                  "en": "GPS Time"
               },
-              "enumValue": "SF9BW125",
-              "name": "SF9BW125"
-            },
-            {
-              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF8BW500;1",
+              "name": "tmms",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:freq;1",
+              "@type": [
+                  "Telemetry",
+                  "Frequency"
+              ],
+              "description": {
+                  "en": "RX central frequency in MHz (unsigned float, Hz precision)"
+              },
               "displayName": {
-                "en": "SF8BW500"
+                  "en": "Frequency"
               },
-              "enumValue": "SF8BW500",
-              "name": "SF8BW500"
-            },
-            {
-              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF11BW500;1",
+              "name": "freq",
+              "schema": "float",
+              "unit": "megahertz"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:chan;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": "Concentrator \"IF\" channel used for RX (unsigned integer)"
+              },
               "displayName": {
-                "en": "SF11BW500"
+                  "en": "Channel"
               },
-              "enumValue": "SF11BW500",
-              "name": "SF11BW500"
-            },
-            {
-              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF10BW500;1",
+              "name": "chan",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:rfch;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": "Concentrator \"RF chain\" used for RX (unsigned integer)"
+              },
               "displayName": {
-                "en": "SF10BW500"
+                  "en": "RF Chain"
               },
-              "enumValue": "SF10BW500",
-              "name": "SF10BW500"
-            },
-            {
-              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX2DataRate:schema:SF9BW500;1",
+              "name": "rfch",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:stat;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": " CRC status: 1 = OK, -1 = fail, 0 = no CRC"
+              },
               "displayName": {
-                "en": "SF9BW500"
+                  "en": "Status"
               },
-              "enumValue": "SF9BW500",
-              "name": "SF9BW500"
-            }
-          ],
-          "valueSchema": "string"
-        },
-        "writable": true
-      }
-    ],
-    "displayName": {
-      "en": "LoRa Interface"
-    },
-    "@context": [
-      "dtmi:iotcentral:context;2",
-      "dtmi:dtdl:context;2"
-    ]
+              "name": "stat",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:datr;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": "LoRa datarate identifier (eg. SF12BW500)"
+              },
+              "displayName": {
+                  "en": "Data Rate"
+              },
+              "name": "datr",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:codr;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": "FSK datarate (unsigned, in bits per second)"
+              },
+              "displayName": {
+                  "en": "Coding Rate"
+              },
+              "name": "codr",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:rssi;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": "RSSI in dBm (signed integer, 1 dB precision)"
+              },
+              "displayName": {
+                  "en": "RSSI"
+              },
+              "name": "rssi",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:lsnr;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": "Lora SNR ratio in dB (signed float, 0.1 dB precision)"
+              },
+              "displayName": {
+                  "en": "LSNR"
+              },
+              "name": "lsnr",
+              "schema": "double"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:size;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": "RF packet payload size in bytes (unsigned integer)"
+              },
+              "displayName": {
+                  "en": "RF Size"
+              },
+              "name": "size",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:modu;1",
+              "@type": "Telemetry",
+              "description": {
+                  "en": "Modulation identifier \"LORA\" or \"FSK\""
+              },
+              "displayName": {
+                  "en": "Modulation"
+              },
+              "name": "modu",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:rawdata;1",
+              "@type": "Telemetry",
+              "displayName": {
+                  "en": "Raw Data"
+              },
+              "name": "rawdata",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:fcnt;1",
+              "@type": "Telemetry",
+              "displayName": {
+                  "en": "Frame Counter"
+              },
+              "name": "fcnt",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:port;1",
+              "@type": "Telemetry",
+              "displayName": {
+                  "en": "Port"
+              },
+              "name": "port",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:gatewayid;1",
+              "@type": "Telemetry",
+              "displayName": {
+                  "en": "Gateway ID"
+              },
+              "name": "gatewayid",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:edgets;1",
+              "@type": "Telemetry",
+              "displayName": {
+                  "en": "Edge TimeStamp"
+              },
+              "name": "edgets",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:AppSKey;1",
+              "@type": "Property",
+              "displayName": {
+                  "en": "AppSKey"
+              },
+              "name": "AppSKey",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:NwkSKey;1",
+              "@type": "Property",
+              "displayName": {
+                  "en": "NwkSKey"
+              },
+              "name": "NwkSKey",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:DevAddr;1",
+              "@type": "Property",
+              "displayName": {
+                  "en": "DevAddr"
+              },
+              "name": "DevAddr",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:FCntDown;1",
+              "@type": "Property",
+              "displayName": {
+                  "en": "FCntDown"
+              },
+              "name": "FCntDown",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:FCntUp;1",
+              "@type": "Property",
+              "displayName": {
+                  "en": "FCntUp"
+              },
+              "name": "FCntUp",
+              "schema": "integer"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:DevEUI;1",
+              "@type": "Property",
+              "displayName": {
+                  "en": "DevEUI"
+              },
+              "name": "DevEUI",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:NetId;1",
+              "@type": "Property",
+              "displayName": {
+                  "en": "NetId"
+              },
+              "name": "NetId",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:DevNonce;1",
+              "@type": "Property",
+              "displayName": {
+                  "en": "DevNonce"
+              },
+              "name": "DevNonce",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RX1DROffset;1",
+              "@type": "Property",
+              "displayName": {
+                  "en": "RX1DROffset"
+              },
+              "name": "RX1DROffset",
+              "schema": "string"
+          },
+          {
+              "@id": "dtmi:kbeaugrand:watecco:SensO:LoRaDevice:RXDelay;1",
+              "@type": "Property",
+              "displayName": {
+                  "en": "RXDelay"
+              },
+              "name": "RXDelay",
+              "schema": "string"
+          }
+      ],
+      "displayName": {
+          "en": "LoRa Interface"
+      },
+      "name": "LoRa"
   }
 ]

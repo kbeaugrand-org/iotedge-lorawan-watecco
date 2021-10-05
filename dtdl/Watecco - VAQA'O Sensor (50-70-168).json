@@ -1,25 +1,25 @@
 [
     {
-        "@id": "dtmi:watteco:vaquaoplus;2",
+        "@id": "dtmi:watteco:vaqaoplus;2",
         "@type": "Interface",
         "contents": [
             {
-                "@id": "dtmi:watteco:vaquaoplus:data;1",
+                "@id": "dtmi:watteco:vaqaoplus:data;1",
                 "@type": "Telemetry",
-                "comment": "VaquaO Sensors data",
+                "comment": "VaqaO Sensors data",
                 "displayName": {
                     "en": "data"
                 },
                 "name": "data",
                 "schema": {
-                    "@id": "dtmi:watteco:vaquaoplus:data:schema;1",
+                    "@id": "dtmi:watteco:vaqaoplus:data:schema;1",
                     "@type": "Object",
                     "displayName": {
                         "en": "Object"
                     },
                     "fields": [
                         {
-                            "@id": "dtmi:watteco:vaquaoplus:data:schema:Temperature;1",
+                            "@id": "dtmi:watteco:vaqaoplus:data:schema:Temperature;1",
                             "displayName": {
                                 "en": "Temperature"
                             },
@@ -27,7 +27,7 @@
                             "schema": "double"
                         },
                         {
-                            "@id": "dtmi:watteco:vaquaoplus:data:schema:RelativeHumidity;1",
+                            "@id": "dtmi:watteco:vaqaoplus:data:schema:RelativeHumidity;1",
                             "displayName": {
                                 "en": "RelativeHumidity"
                             },
@@ -35,7 +35,7 @@
                             "schema": "double"
                         },
                         {
-                            "@id": "dtmi:watteco:vaquaoplus:data:schema:CO2;1",
+                            "@id": "dtmi:watteco:vaqaoplus:data:schema:CO2;1",
                             "displayName": {
                                 "en": "CO2"
                             },
@@ -43,7 +43,7 @@
                             "schema": "double"
                         },
                         {
-                            "@id": "dtmi:watteco:vaquaoplus:data:schema:COV;1",
+                            "@id": "dtmi:watteco:vaqaoplus:data:schema:COV;1",
                             "displayName": {
                                 "en": "COV"
                             },
@@ -51,7 +51,7 @@
                             "schema": "double"
                         },
                         {
-                            "@id": "dtmi:watteco:vaquaoplus:data:schema:LUX;1",
+                            "@id": "dtmi:watteco:vaqaoplus:data:schema:LUX;1",
                             "displayName": {
                                 "en": "LUX"
                             },
@@ -59,7 +59,7 @@
                             "schema": "double"
                         },
                         {
-                            "@id": "dtmi:watteco:vaquaoplus:data:schema:Pressure;1",
+                            "@id": "dtmi:watteco:vaqaoplus:data:schema:Pressure;1",
                             "displayName": {
                                 "en": "Pressure"
                             },
@@ -67,7 +67,7 @@
                             "schema": "double"
                         },
                         {
-                            "@id": "dtmi:watteco:vaquaoplus:data:schema:Occupancy;1",
+                            "@id": "dtmi:watteco:vaqaoplus:data:schema:Occupancy;1",
                             "displayName": {
                                 "en": "Occupancy"
                             },
@@ -94,17 +94,17 @@
                             }
                         },
                         {
-                            "@id": "dtmi:watteco:vaquaoplus:data:schema:Configuration;1",
+                            "@id": "dtmi:watteco:vaqaoplus:data:schema:Configuration;1",
                             "displayName": {
                                 "en": "Configuration"
                             },
                             "name": "Configuration",
                             "schema": {
-                                "@id": "dtmi:watteco:vaquaoplus:data:schema:Configuration:schema;1",
+                                "@id": "dtmi:watteco:vaqaoplus:data:schema:Configuration:schema;1",
                                 "@type": "Object",
                                 "fields": [
                                     {
-                                        "@id": "dtmi:watteco:vaquaoplus:data:schema:Configuration:schema:CurrentPowerMode;1",
+                                        "@id": "dtmi:watteco:vaqaoplus:data:schema:Configuration:schema:CurrentPowerMode;1",
                                         "displayName": {
                                             "en": "CurrentPowerMode"
                                         },
@@ -112,7 +112,7 @@
                                         "schema": "string"
                                     },
                                     {
-                                        "@id": "dtmi:watteco:vaquaoplus:data:schema:Configuration:schema:AvailablePowerSourceBitField;1",
+                                        "@id": "dtmi:watteco:vaqaoplus:data:schema:Configuration:schema:AvailablePowerSourceBitField;1",
                                         "displayName": {
                                             "en": "AvailablePowerSourceBitField"
                                         },
@@ -120,7 +120,7 @@
                                         "schema": "integer"
                                     },
                                     {
-                                        "@id": "dtmi:watteco:vaquaoplus:data:schema:Configuration:schema:DisposableBatteryVoltage;1",
+                                        "@id": "dtmi:watteco:vaqaoplus:data:schema:Configuration:schema:DisposableBatteryVoltage;1",
                                         "displayName": {
                                             "en": "DisposableBatteryVoltage"
                                         },
@@ -128,7 +128,7 @@
                                         "schema": "double"
                                     },
                                     {
-                                        "@id": "dtmi:watteco:vaquaoplus:data:schema:Configuration:schema:CurrentPowerSource;1",
+                                        "@id": "dtmi:watteco:vaqaoplus:data:schema:Configuration:schema:CurrentPowerSource;1",
                                         "displayName": {
                                             "en": "CurrentPowerSource"
                                         },
@@ -143,7 +143,7 @@
             }
         ],
         "extends": [
-            "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice;1"
+            "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice;1"
         ],
         "@context": [
             "dtmi:iotcentral:context;2",
@@ -155,14 +155,14 @@
             "dtmi:iotcentral:context;2",
             "dtmi:dtdl:context;2"
         ],
-        "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice;1",
+        "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice;1",
         "@type": [
             "Interface",
             "NamedInterface"
         ],
         "contents": [
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:AppEUI;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:AppEUI;1",
                 "@type": "Property",
                 "description": {
                     "en": "This is the unique ID of the Application server."
@@ -175,7 +175,7 @@
                 "writable": true
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:AppKey;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:AppKey;1",
                 "@type": "Property",
                 "description": {
                     "en": "The data encryption key used to \"encode\" the messages between the end nodes and the Application Server"
@@ -188,7 +188,7 @@
                 "writable": true
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:SensorDecoder;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:SensorDecoder;1",
                 "@type": "Property",
                 "description": {
                     "en": "The name of an integrated decoder function or the URI to a decoder in a custom decoder module in the format: http://modulename/api/decodername."
@@ -201,7 +201,7 @@
                 "writable": true
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate;1",
                 "@type": "Property",
                 "description": {
                     "en": "Rx2DataRate (Receive window 2 data rate, currently only supported for OTAA devices): Any of the allowed data rates."
@@ -211,14 +211,14 @@
                 },
                 "name": "RX2DataRate",
                 "schema": {
-                    "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema;1",
+                    "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema;1",
                     "@type": "Enum",
                     "displayName": {
                         "en": "Enum"
                     },
                     "enumValues": [
                         {
-                            "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema:SF12BW125;1",
+                            "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema:SF12BW125;1",
                             "displayName": {
                                 "en": "SF12BW125"
                             },
@@ -226,7 +226,7 @@
                             "name": "SF12BW125"
                         },
                         {
-                            "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema:SF11BW125;1",
+                            "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema:SF11BW125;1",
                             "displayName": {
                                 "en": "SF11BW125"
                             },
@@ -234,7 +234,7 @@
                             "name": "SF11BW125"
                         },
                         {
-                            "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema:SF10BW125;1",
+                            "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema:SF10BW125;1",
                             "displayName": {
                                 "en": "SF10BW125"
                             },
@@ -242,7 +242,7 @@
                             "name": "SF10BW125"
                         },
                         {
-                            "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema:SF8BW125;1",
+                            "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema:SF8BW125;1",
                             "displayName": {
                                 "en": "SF8BW125"
                             },
@@ -250,7 +250,7 @@
                             "name": "SF8BW125"
                         },
                         {
-                            "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema:SF7BW250;1",
+                            "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema:SF7BW250;1",
                             "displayName": {
                                 "en": "SF7BW250"
                             },
@@ -258,7 +258,7 @@
                             "name": "SF7BW250"
                         },
                         {
-                            "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema:SF7BW125;1",
+                            "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema:SF7BW125;1",
                             "displayName": {
                                 "en": "SF7BW125"
                             },
@@ -266,7 +266,7 @@
                             "name": "SF7BW125"
                         },
                         {
-                            "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema:SF9BW125;1",
+                            "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema:SF9BW125;1",
                             "displayName": {
                                 "en": "SF9BW125"
                             },
@@ -274,7 +274,7 @@
                             "name": "SF9BW125"
                         },
                         {
-                            "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema:SF8BW500;1",
+                            "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema:SF8BW500;1",
                             "displayName": {
                                 "en": "SF8BW500"
                             },
@@ -282,7 +282,7 @@
                             "name": "SF8BW500"
                         },
                         {
-                            "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema:SF11BW500;1",
+                            "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema:SF11BW500;1",
                             "displayName": {
                                 "en": "SF11BW500"
                             },
@@ -290,7 +290,7 @@
                             "name": "SF11BW500"
                         },
                         {
-                            "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema:SF10BW500;1",
+                            "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema:SF10BW500;1",
                             "displayName": {
                                 "en": "SF10BW500"
                             },
@@ -298,7 +298,7 @@
                             "name": "SF10BW500"
                         },
                         {
-                            "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX2DataRate:schema:SF9BW500;1",
+                            "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX2DataRate:schema:SF9BW500;1",
                             "displayName": {
                                 "en": "SF9BW500"
                             },
@@ -311,7 +311,7 @@
                 "writable": true
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:tmst;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:tmst;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": "Internal timestamp of \"RX finished\" event (32b unsigned)"
@@ -323,7 +323,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:time;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:time;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": "UTC time of pkt RX, us precision, ISO 8601 'compact' format"
@@ -335,7 +335,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:tmms;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:tmms;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": "GPS time of pkt RX, number of milliseconds since 06.Jan.1980"
@@ -347,7 +347,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:freq;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:freq;1",
                 "@type": [
                     "Telemetry",
                     "Frequency"
@@ -363,7 +363,7 @@
                 "unit": "megahertz"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:chan;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:chan;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": "Concentrator \"IF\" channel used for RX (unsigned integer)"
@@ -375,7 +375,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:rfch;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:rfch;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": "Concentrator \"RF chain\" used for RX (unsigned integer)"
@@ -387,7 +387,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:stat;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:stat;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": " CRC status: 1 = OK, -1 = fail, 0 = no CRC"
@@ -399,7 +399,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:datr;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:datr;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": "LoRa datarate identifier (eg. SF12BW500)"
@@ -411,7 +411,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:codr;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:codr;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": "FSK datarate (unsigned, in bits per second)"
@@ -423,7 +423,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:rssi;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:rssi;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": "RSSI in dBm (signed integer, 1 dB precision)"
@@ -435,7 +435,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:lsnr;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:lsnr;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": "Lora SNR ratio in dB (signed float, 0.1 dB precision)"
@@ -447,7 +447,7 @@
                 "schema": "double"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:size;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:size;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": "RF packet payload size in bytes (unsigned integer)"
@@ -459,7 +459,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:modu;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:modu;1",
                 "@type": "Telemetry",
                 "description": {
                     "en": "Modulation identifier \"LORA\" or \"FSK\""
@@ -471,7 +471,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:rawdata;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:rawdata;1",
                 "@type": "Telemetry",
                 "displayName": {
                     "en": "Raw Data"
@@ -480,7 +480,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:fcnt;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:fcnt;1",
                 "@type": "Telemetry",
                 "displayName": {
                     "en": "Frame Counter"
@@ -489,7 +489,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:port;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:port;1",
                 "@type": "Telemetry",
                 "displayName": {
                     "en": "Port"
@@ -498,7 +498,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:gatewayid;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:gatewayid;1",
                 "@type": "Telemetry",
                 "displayName": {
                     "en": "Gateway ID"
@@ -507,7 +507,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:edgets;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:edgets;1",
                 "@type": "Telemetry",
                 "displayName": {
                     "en": "Edge TimeStamp"
@@ -516,7 +516,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:AppSKey;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:AppSKey;1",
                 "@type": "Property",
                 "displayName": {
                     "en": "AppSKey"
@@ -525,7 +525,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:NwkSKey;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:NwkSKey;1",
                 "@type": "Property",
                 "displayName": {
                     "en": "NwkSKey"
@@ -534,7 +534,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:DevAddr;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:DevAddr;1",
                 "@type": "Property",
                 "displayName": {
                     "en": "DevAddr"
@@ -543,7 +543,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:FCntDown;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:FCntDown;1",
                 "@type": "Property",
                 "displayName": {
                     "en": "FCntDown"
@@ -552,7 +552,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:FCntUp;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:FCntUp;1",
                 "@type": "Property",
                 "displayName": {
                     "en": "FCntUp"
@@ -561,7 +561,7 @@
                 "schema": "integer"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:DevEUI;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:DevEUI;1",
                 "@type": "Property",
                 "displayName": {
                     "en": "DevEUI"
@@ -570,7 +570,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:NetId;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:NetId;1",
                 "@type": "Property",
                 "displayName": {
                     "en": "NetId"
@@ -579,7 +579,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:DevNonce;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:DevNonce;1",
                 "@type": "Property",
                 "displayName": {
                     "en": "DevNonce"
@@ -588,7 +588,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RX1DROffset;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RX1DROffset;1",
                 "@type": "Property",
                 "displayName": {
                     "en": "RX1DROffset"
@@ -597,7 +597,7 @@
                 "schema": "string"
             },
             {
-                "@id": "dtmi:kbeaugrand:watecco:vaquaoplus:LoRaDevice:RXDelay;1",
+                "@id": "dtmi:kbeaugrand:watecco:vaqaoplus:LoRaDevice:RXDelay;1",
                 "@type": "Property",
                 "displayName": {
                     "en": "RXDelay"

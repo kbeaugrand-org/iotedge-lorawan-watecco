@@ -15,7 +15,6 @@ app = FastAPI()
 
 def parseFor(tagz: int, commands, payload: str):
     splited_commands=br_uncompress.split_commands(commands)
-    print(splited_commands)
 
     inputData = base64.b64decode(payload).hex()
 
@@ -49,6 +48,12 @@ def parseUnitaryFrame(payload: str):
     result = {}
     result[frame['ClusterID']] = frame['Data'] 
 
+    if (frame['ClusterID'] == "Temperature"):
+        result['Temperature'] = result['Temperature'] / 100
+
+    if (frame['ClusterID'] == "RelativeHumidity"):
+        result['RelativeHumidity'] = result['RelativeHumidity'] / 100
+
     if (frame['AttributeID'] == "NodePowerDescriptor"):
         result[frame['ClusterID']]['DisposableBatteryVoltage'] = result[frame['ClusterID']]['DisposableBatteryVoltage'] / 1000
 
@@ -60,7 +65,7 @@ def parseUnitaryFrame(payload: str):
               occupancy = 1
 
         result['Occupancy'] = occupancy
-
+    
     return result
 
 @app.get("/api/stdframe")
@@ -73,8 +78,12 @@ def S0Decoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/thr")
 def THRDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(3, ['0,10,7,Temperature', '1,100,6,RelativeHumidity', ' 2,10,12,Luminosity', '3,100,6,Disposable_BatteryLevel', '4,100,6,Rechargeable_BatteryLevel'], payload)
+    result = parseFor(3, ['0,10,7,Temperature', '1,100,6,RelativeHumidity', ' 2,10,12,Illuminance', '3,100,6,DisposableBatteryVoltage', '4,100,6,RechargeableBatteryVoltage'], payload)
+    
+    if 'AnalogInput' in result.keys():
+        result['Illuminance'] = result.pop('AnalogInput')
 
+    return result
 @app.get("/api/senso")
 def SensoDecoder(devEUI: str, payload: str, fport: int):
     return parseFor(3, ['0,1,4,Status', '1,1,11,Index', '2,1,5,MinFlow', '3,1,5,MaxFlow'], payload)

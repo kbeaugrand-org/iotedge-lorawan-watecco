@@ -1,6 +1,6 @@
 [
     {
-        "@id": "dtmi:watteco:vaqaoplus;2",
+        "@id": "dtmi:watteco:vaqaoplus;1",
         "@type": "Interface",
         "contents": [
             {

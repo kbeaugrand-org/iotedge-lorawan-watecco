@@ -46,8 +46,8 @@ def parseUnitaryFrame(payload: str):
     frame = json.loads(Decoding_JSON(inputData, False))
 
     result = {}
-    result[frame['ClusterID']] = frame['Data'] 
 
+    result[frame['ClusterID']] = frame['Data'] 
     if (frame['ClusterID'] == "Temperature"):
         result['Temperature'] = result['Temperature'] / 100
 
@@ -62,8 +62,7 @@ def parseUnitaryFrame(payload: str):
         for item in frame['Data']:
             print (item)
             if frame['Data'][item] == 1:
-              occupancy = 1
-
+                occupancy = 1
         result['Occupancy'] = occupancy
     
     return result
@@ -86,7 +85,11 @@ def THRDecoder(devEUI: str, payload: str, fport: int):
     return result
 @app.get("/api/senso")
 def SensoDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(3, ['0,1,4,Status', '1,1,11,Index', '2,1,5,MinFlow', '3,1,5,MaxFlow'], payload)
+    result = parseFor(1, ['0,1,11,Volume', '1,100,6,DisposableBatteryVoltage'], payload)
+
+    result['DisposableBatteryVoltage'] = result['DisposableBatteryVoltage'] / 1000
+
+    return result
 
 @app.get("/api/pulsesenso")
 def PulseSensoDecoder(devEUI: str, payload: str, fport: int):

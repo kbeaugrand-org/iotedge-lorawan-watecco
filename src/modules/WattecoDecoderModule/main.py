@@ -73,7 +73,11 @@ def S0Decoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/s0")
 def S0Decoder(devEUI: str, payload: str, fport: int):
-    return parseFor(1, ['0,1,10,Index1', '1,100,6,BatteryLevel'], payload)
+    result = parseFor(1, ['0,1,10,Pulse', '1,100,6,DisposableBatteryVoltage'], payload)
+
+    result['DisposableBatteryVoltage'] = result['DisposableBatteryVoltage'] / 1000
+
+    return result
 
 @app.get("/api/thr")
 def THRDecoder(devEUI: str, payload: str, fport: int):

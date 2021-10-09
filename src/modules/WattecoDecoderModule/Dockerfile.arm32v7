@@ -2,14 +2,23 @@ FROM busybox as builder
 
 WORKDIR /src
 
-COPY . .
+COPY ./Codec-Report-Standard-Python/srcWatteco/     ./Codec/Standard/
+COPY ./Codec-Report-Batch-Python/br_uncompress.py    ./Codec/Batch/
+COPY ./Codec-Report-Batch-Python/constants.py        ./Codec/Batch/
+COPY ./requirements.txt .
 
-RUN chmod +x replaceCodecImports.sh && ./replaceCodecImports.sh
-FROM arm32v7/python:3.7-slim-buster
+RUN sed -i 's/from ZCL/from .ZCL/'                          ./Codec/Standard/Decoding_Functions.py
+RUN sed -i 's/from ZCL/from .ZCL/'                          ./Codec/Standard/ZCL_FRAME.py
+RUN sed -i 's/from ZCL/from .ZCL/'                          ./Codec/Standard/ZCL.py
+RUN sed -i 's/from WTC_CodecTools/from .WTC_CodecTools/'    ./Codec/Standard/ZCL.py
+RUN sed -i 's/from TICs/from .TICs/'                        ./Codec/Standard/ZCL.py
+RUN sed -i 's/from WTC_CodecTools/from ..WTC_CodecTools/'   ./Codec/Standard/TICs/_TIC_Tools.py
+RUN sed -i 's/import constants/from . import constants/'    ./Codec/Batch/br_uncompress.py
 
 EXPOSE 80
 
-WORKDIR /app
+
+FROM arm32v7/python:3.7-slim-buster
 
 COPY --from=builder /src/Batch/ ./Batch/
 COPY --from=builder /src/Standard/ ./Standard/

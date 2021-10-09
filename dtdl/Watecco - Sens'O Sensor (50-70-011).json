@@ -27,14 +27,6 @@
                 "schema": "double"
               },
               {
-                "@id": "dtmi:watteco:SensO:data:schema:Illuminance;1",
-                "displayName": {
-                  "en": "Status"
-                },
-                "name": "Status",
-                "schema": "integer"
-              },
-              {
                 "@id": "dtmi:watteco:SensO:data:schema:DisposableBatteryVoltage;1",
                 "displayName": {
                   "en": "DisposableBatteryVoltage"

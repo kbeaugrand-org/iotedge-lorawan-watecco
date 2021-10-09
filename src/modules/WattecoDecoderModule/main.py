@@ -75,6 +75,10 @@ def S0Decoder(devEUI: str, payload: str, fport: int):
 def S0Decoder(devEUI: str, payload: str, fport: int):
     result = parseFor(1, ['0,1,10,Pulse', '1,100,6,DisposableBatteryVoltage'], payload)
 
+    result['DisposableBatteryVoltage'] = result['DisposableBatteryVoltage'] / 1000
+
+    return result
+
     if 'CommandID' in result and result['CommandID'] == 'ReportAttributes': 
         if result['AttributeID'] == 'PresentValue':
             return {

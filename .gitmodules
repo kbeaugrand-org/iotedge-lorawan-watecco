@@ -1,6 +1,6 @@
-[submodule "src/modules/WattecoDecoderModule/Standard"]
+[submodule "src/modules/WattecoDecoderModule/Codec-Report-Standard-Python"]
 	path = src/modules/WattecoDecoderModule/Standard
 	url = https://github.com/Watteco/Codec-Report-Standard-Python
-[submodule "src/modules/WattecoDecoderModule/Batch"]
+[submodule "src/modules/WattecoDecoderModule/Codec-Report-Batch-Python"]
 	path = src/modules/WattecoDecoderModule/Batch
 	url = https://github.com/Watteco/Codec-Report-Batch-Python

@@ -2,29 +2,24 @@ FROM busybox as builder
 
 WORKDIR /src
 
-COPY ./Codec-Report-Standard-Python/srcWatteco/     ./Codec/Standard/
-COPY ./Codec-Report-Batch-Python/br_uncompress.py    ./Codec/Batch/
-COPY ./Codec-Report-Batch-Python/constants.py        ./Codec/Batch/
-COPY ./requirements.txt .
+COPY . .
 
-RUN sed -i 's/from ZCL/from .ZCL/'                          ./Codec/Standard/Decoding_Functions.py
-RUN sed -i 's/from ZCL/from .ZCL/'                          ./Codec/Standard/ZCL_FRAME.py
-RUN sed -i 's/from ZCL/from .ZCL/'                          ./Codec/Standard/ZCL.py
-RUN sed -i 's/from WTC_CodecTools/from .WTC_CodecTools/'    ./Codec/Standard/ZCL.py
-RUN sed -i 's/from TICs/from .TICs/'                        ./Codec/Standard/ZCL.py
-RUN sed -i 's/from WTC_CodecTools/from ..WTC_CodecTools/'   ./Codec/Standard/TICs/_TIC_Tools.py
-RUN sed -i 's/import constants/from . import constants/'    ./Codec/Batch/br_uncompress.py
-
-COPY ./main.py .
+RUN chmod +x replaceCodecImports.sh && ./replaceCodecImports.sh
 
 FROM amd64/python:3.7-slim-buster
 
 EXPOSE 80
 
+WORKDIR /app
+
+COPY --from=builder /src/Batch/ ./Batch/
+COPY --from=builder /src/Standard/ ./Standard/
+
+COPY --from=builder /src/main.py ./
+COPY --from=builder /src/requirements.txt ./
+
+RUN pip install -r requirements.txt
+
 WORKDIR /
-
-COPY --from=builder /src/* /app/
-
-RUN pip install -r /app/requirements.txt
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]

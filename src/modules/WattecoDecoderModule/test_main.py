@@ -75,3 +75,23 @@ def test_atmo():
     json.pop('timestamp')
 
     assert json == {"Temperature":24.64,"RelativeHumidity":23.24,"Pressure":1012}
+
+def test_presso():
+    response = client.get("/api/presso?payload=EQoADABVOUFQAAA%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"mA":13.0}
+
+    response = client.get("/api/presso?payload=MQoADABVOUYU0AA%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"V":9.524}
+
+    response = client.get("/api/presso?payload=IBUAgAH0ok5wgNLeAUISEPmuKVVAu2VpBA%3D%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+
+    assert json == {"BatteryLevel":3.5,"V":7.52}

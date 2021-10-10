@@ -48,12 +48,11 @@ jobs:
 
       - name: Test with pytest
         working-directory: ${{ env.module_path }}
-        run: coverage run --source=$. -m pytest test_main.py
+        run: pytest --cov=./ --cov-report=xml test_main.py
 
       - name: Upload coverage
-        shell: pwsh
         working-directory: ${{ env.module_path }}
-        run: coverage report -m
+        uses: codecov/codecov-action@v1
       
   # This workflow contains a single job called "build"
   build:

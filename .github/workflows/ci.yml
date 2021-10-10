@@ -14,6 +14,34 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
+  tests: 
+    strategy:
+        matrix:
+          python-version: [2.7, 3.5, 3.6, 3.7, 3.8, 3.9]
+    steps:
+          # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with: 
+          submodules: true
+        
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ${{ env.module_path }}/requirements.txt
+          pip install -r ${{ env.module_path }}/requirements-dev.txt
+    
+      - name: Test with pytest
+        run: coverage run --source=. -m ${{ env.module_path }}/test_main.py
+
+      - name: Upload coverage
+        shell: pwsh
+        run: coverage report -m
+      
   # This workflow contains a single job called "build"
   build:
       # The type of runner that the job will run on
@@ -31,7 +59,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with: 
-          submodules: true        
+          submodules: true
       
       # - name: Docker Login
       #   # You may pin to the exact commit or the version.

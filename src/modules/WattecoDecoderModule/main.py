@@ -109,7 +109,22 @@ def PulseSensoDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/presso")
 def PressoDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(3, ['0,0.004,12,4-20mA', '1,1,12,0-10V', '2,100,6,BatteryLevel', '3,100,6,ExtPowerLevel', '4,1,10,Index'], payload)
+    result = parseFor(3, ['0,0.004,12,mA', '1,1,12,V', '2,100,6,BatteryLevel', '3,100,6,ExtPowerLevel', '4,1,10,Index'], payload)
+
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributes': 
+        if result['AttributeID'] == 'PresentValue' and result['EndPoint'] == 0:
+            return {
+                'mA': result['Data']
+            }
+        if result['AttributeID'] == 'PresentValue' and result['EndPoint'] == 1:
+            return {
+                'V': result['Data'] / 1000
+            }
+
+    result['BatteryLevel'] = result['BatteryLevel'] / 1000
+    result['V'] = result['V'] / 1000
+
+    return result
 
 @app.get("/remotetemperature")
 def RemoteTemperatureDecoder(devEUI: str, payload: str, fport: int):

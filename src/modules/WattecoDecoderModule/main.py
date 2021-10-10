@@ -133,7 +133,12 @@ def TDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/atmo")
 def AtmoDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(3, ['0,1,7,Temperature', '1,1,6,RelativeHumidity', '2,1,7,Pressure', '3,1,10,Index1', '4,1,10,Index2', '5,1,6,BatteryLevel'], payload)
+    result = parseFor(3, ['0,1,7,Temperature', '1,1,6,RelativeHumidity', '2,1,7,Pressure', '3,1,10,Index1', '4,1,10,Index2', '5,1,6,BatteryLevel'], payload)
+
+    result.pop('Index1')
+    result.pop('Index2')
+
+    return result
 
 @app.get("/api/ventilo")
 def VentiloDecoder(devEUI: str, payload: str, fport: int):

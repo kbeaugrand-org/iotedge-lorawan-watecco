@@ -68,3 +68,10 @@ def test_senso():
             
     assert json == {'DisposableBatteryVoltage': 3.0, 'Volume': 45}
     
+def test_atmo():
+    response = client.get("/api/atmo?payload=VgAAAAGTBNDsEyi0H6DfHgAAAIB7AAAAgAU%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+
+    assert json == {"Temperature":24.64,"RelativeHumidity":23.24,"Pressure":1012}

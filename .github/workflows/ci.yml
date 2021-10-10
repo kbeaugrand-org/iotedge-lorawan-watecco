@@ -11,6 +11,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  image_name: kbeaugrand/az-iotedge-watteco-decoder-module
+  module_path: src/modules/WattecoDecoderModule
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
@@ -49,10 +53,6 @@ jobs:
     strategy:
       matrix:
         arch:  [amd64, arm32v7, arm64v8]
-    env:
-      image_name: kbeaugrand/az-iotedge-watteco-decoder-module
-      tag_name: 0.0.1
-      module_path: src/modules/WattecoDecoderModule
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

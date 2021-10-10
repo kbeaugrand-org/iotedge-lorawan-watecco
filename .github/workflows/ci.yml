@@ -49,9 +49,6 @@ jobs:
       - name: Test with pytest
         working-directory: ${{ env.module_path }}
         run: pytest --cov=./ --cov-report=xml test_main.py
-
-      - name: Upload coverage
-        uses: codecov/codecov-action@v1
       
   # This workflow contains a single job called "build"
   build:

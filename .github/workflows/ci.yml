@@ -42,7 +42,9 @@ jobs:
     
       - name: Make Codec files replacements
         working-directory: ${{ env.module_path }}
-        run: ./replaceCodecImports.sh
+        run: |
+          chmod +x replaceCodecImports.sh 
+          ./replaceCodecImports.sh
 
       - name: Test with pytest
         working-directory: ${{ env.module_path }}

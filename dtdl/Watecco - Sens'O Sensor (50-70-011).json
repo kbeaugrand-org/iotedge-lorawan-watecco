@@ -33,6 +33,86 @@
                 },
                 "name": "DisposableBatteryVoltage",
                 "schema": "double"
+              },
+              {
+                "@id": "dtmi:watteco:SensO:data:Status;1",
+                "displayName": {
+                  "en": "Status"
+                },
+                "name": "Status",
+                "schema": {
+                  "@id": "dtmi:watteco:SensO:data:Status:schema;1",
+                  "@type": "Object",
+                  "displayName": {
+                    "en": "Status"
+                  },
+                  "fields": [
+                    {
+                      "@id": "dtmi:watteco:SensO:data:Status:schema:Freeze;1",
+                      "displayName": {
+                        "en": "Freeze"
+                      },
+                      "name": "Freeze",
+                      "schema": "boolean"
+                    },
+                    {
+                      "@id": "dtmi:watteco:SensO:data:Status:schema:Installation;1",
+                      "displayName": {
+                        "en": "Installation"
+                      },
+                      "name": "Installation",
+                      "schema": "boolean"
+                    },
+                    {
+                      "@id": "dtmi:watteco:SensO:data:Status:schema:Battery;1",
+                      "displayName": {
+                        "en": "Battery"
+                      },
+                      "name": "Battery",
+                      "schema": "boolean"
+                    },
+                    {
+                      "@id": "dtmi:watteco:SensO:data:Status:schema:Fraud;1",
+                      "displayName": {
+                        "en": "Fraud"
+                      },
+                      "name": "Fraud",
+                      "schema": "boolean"
+                    },
+                    {
+                      "@id": "dtmi:watteco:SensO:data:Status:schema:BackWaterLevel3;1",
+                      "displayName": {
+                        "en": "BackWaterLevel3"
+                      },
+                      "name": "BackWaterLevel3",
+                      "schema": "boolean"
+                    },
+                    {
+                      "@id": "dtmi:watteco:SensO:data:Status:schema:BackWaterLevel2;1",
+                      "displayName": {
+                        "en": "BackWaterLevel2"
+                      },
+                      "name": "BackWaterLevel2",
+                      "schema": "boolean"
+                    },
+                    {
+                      "@id": "dtmi:watteco:SensO:data:Status:schema:BackWaterLevel1;1",
+                      "displayName": {
+                        "en": "BackWaterLevel1"
+                      },
+                      "name": "BackWaterLevel1",
+                      "schema": "boolean"
+                    },
+                    {
+                      "@id": "dtmi:watteco:SensO:data:Status:schema:Leak;1",
+                      "displayName": {
+                        "en": "Leak"
+                      },
+                      "name": "Leak",
+                      "schema": "boolean"
+                    }
+                  ]
+                }
               }
             ]
           }

@@ -7,7 +7,7 @@ from typing import Optional
 from fastapi import FastAPI
 from datetime import datetime
 
-from .Standard.Decoding_Functions import Decoding_JSON, version
+from .Standard.srcWatteco.Decoding_Functions import Decoding_JSON, version
 from .Batch import br_uncompress
 from .Batch.br_uncompress import hex_to_array
 
@@ -43,29 +43,7 @@ def parseFor(tagz: int, commands, payload: str):
 def parseUnitaryFrame(payload: str): 
     inputData = base64.b64decode(payload).hex()
 
-    frame = json.loads(Decoding_JSON(inputData, False))
-
-    result = {}
-
-    result[frame['ClusterID']] = frame['Data'] 
-    if (frame['ClusterID'] == "Temperature"):
-        result['Temperature'] = result['Temperature'] / 100
-
-    if (frame['ClusterID'] == "RelativeHumidity"):
-        result['RelativeHumidity'] = result['RelativeHumidity'] / 100
-
-    if (frame['AttributeID'] == "NodePowerDescriptor"):
-        result[frame['ClusterID']]['DisposableBatteryVoltage'] = result[frame['ClusterID']]['DisposableBatteryVoltage'] / 1000
-
-    if (frame['AttributeID'] == "Occupancy"):
-        occupancy = 0;
-        for item in frame['Data']:
-            print (item)
-            if frame['Data'][item] == 1:
-                occupancy = 1
-        result['Occupancy'] = occupancy
-    
-    return result
+    return json.loads(Decoding_JSON(inputData, False))
 
 @app.get("/api/stdframe")
 def S0Decoder(devEUI: str, payload: str, fport: int):
@@ -75,9 +53,18 @@ def S0Decoder(devEUI: str, payload: str, fport: int):
 def S0Decoder(devEUI: str, payload: str, fport: int):
     result = parseFor(1, ['0,1,10,Pulse', '1,100,6,DisposableBatteryVoltage'], payload)
 
-    result['DisposableBatteryVoltage'] = result['DisposableBatteryVoltage'] / 1000
-
-    return result
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributes': 
+        if result['AttributeID'] == 'PresentValue':
+            return {
+                'State': result['Data']
+            }
+        if result['AttributeID'] == 'Count':
+            return {
+                'Pulse': result['Data']
+            }
+    else:
+        result['DisposableBatteryVoltage'] = result['DisposableBatteryVoltage'] / 1000
+        return result
 
 @app.get("/api/thr")
 def THRDecoder(devEUI: str, payload: str, fport: int):
@@ -86,14 +73,35 @@ def THRDecoder(devEUI: str, payload: str, fport: int):
     if 'AnalogInput' in result.keys():
         result['Illuminance'] = result.pop('AnalogInput')
 
+    result['DisposableBatteryVoltage'] = result['DisposableBatteryVoltage'] / 1000
+    result['RechargeableBatteryVoltage'] = result['RechargeableBatteryVoltage'] / 1000
+
     return result
 @app.get("/api/senso")
 def SensoDecoder(devEUI: str, payload: str, fport: int):
     result = parseFor(1, ['0,1,11,Volume', '1,100,6,DisposableBatteryVoltage'], payload)
 
-    result['DisposableBatteryVoltage'] = result['DisposableBatteryVoltage'] / 1000
-
-    return result
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributes': 
+        if result['AttributeID'] == 'Volume':
+            return {
+                'Volume': result['Data']
+            }
+        if result['AttributeID'] == 'Status':
+            return {
+                'Status': {
+                    'Freeze': result['Data']['b7'],
+                    'Installation': result['Data']['b6'],
+                    'Battery': result['Data']['b5'],
+                    'Fraud': result['Data']['b4'],
+                    'BackWaterLevel3': result['Data']['b3'],
+                    'BackWaterLevel2': result['Data']['b2'],
+                    'BackWaterLevel1': result['Data']['b1'],
+                    'Leak': result['Data']['b0']
+                }
+            }
+    else:
+        result['DisposableBatteryVoltage'] = result['DisposableBatteryVoltage'] / 1000
+        return result
 
 @app.get("/api/pulsesenso")
 def PulseSensoDecoder(devEUI: str, payload: str, fport: int):
@@ -143,10 +151,12 @@ def PulseSensoAtexZ1Decoder(devEUI: str, payload: str, fport: int):
 def RemoteTemperature2CTNDecoder(devEUI: str, payload: str, fport: int):
     return parseFor(3, ['0,10,7,Temperature1', '1,10,7,Temperature2'], payload)
 
-@app.get("/api/vaquao")
+@app.get("/api/vaqao")
 def VAQAODecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(3, ['1,10,7,Temperature' ,'2,100,6,RelativeHumidity', '3,10,6,CO2', '4,10,6,COV'], payload)
+    frame = parseFor(3, ['1,10,7,Temperature' ,'2,100,6,RelativeHumidity', '3,10,6,CO2', '4,10,6,COV'], payload)
+    return frame
 
-@app.get("/api/vaquaoplus")
+@app.get("/api/vaqaoplus")
 def VAQAOPlusDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(3, ['0,1,4,Occupancy', '1,10,7,Temperature', '2,100,6,RelativeHumidity', '3,10,6,CO2', '4,10,6,COV', '5,10,6,LUX', '6,10,6,Pressure'], payload)
+    frame = parseFor(3, ['0,1,4,Occupancy', '1,10,7,Temperature', '2,100,6,RelativeHumidity', '3,10,6,CO2', '4,10,6,COV', '5,10,6,LUX', '6,10,6,Pressure'], payload)
+    return frame

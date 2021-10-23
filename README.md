@@ -1,12 +1,12 @@
 
 # Azure IoT Edge LoRaWAN Watteco Sensors Support
 
-[![Build](https://github.com/kbeaugrand/iotedge-lorawan-watecco-decoder/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/kbeaugrand/iotedge-lorawan-watecco-decoder/actions/workflows/ci.yml)
-[![Continuous Deployment](https://github.com/kbeaugrand/iotedge-lorawan-watecco-decoder/actions/workflows/cd.yml/badge.svg)](https://github.com/kbeaugrand/iotedge-lorawan-watecco-decoder/actions/workflows/cd.yml)
+[![Build](https://github.com/kbeaugrand-org/iotedge-lorawan-watteco/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/kbeaugrand-org/iotedge-lorawan-watteco/actions/workflows/ci.yml)
+[![Continuous Deployment](https://github.com/kbeaugrand-org/iotedge-lorawan-watteco/actions/workflows/cd.yml/badge.svg)](https://github.com/kbeaugrand-org/iotedge-lorawan-watteco/actions/workflows/cd.yml)
 
 ## Description
 
-This repository stores the code for executing an Azure IoT Edge LoRaWAN Decoder module for Watecco Sensors.
+This repository stores the code for executing an Azure IoT Edge LoRaWAN Decoder module for watteco Sensors.
 
 ### Batch Uncompress
 
@@ -27,26 +27,26 @@ To distinguish which kind of frame is present, the decoding function will be awa
 
 __Current Version__ of NKE uncompress module used is __1.0.5__.
 
-| Sensor Name                             | Decoder Endpoint                |
-|-----------------------------------------|---------------------------------|
-| 50-70-001 S0                            | /api/s0                         |
-| 50-70-007 THr harvesting                | /api/thr                        |
-| 50-70-011 Senso                         | /api/senso                      |
-| 50-70-[014/039/051/072/079] PulseSenso  | /api/pulsesenso                 |
-| 50-70-016 Presso                        | /api/presso                     |
-| 50-70-[043/142] Remote temperature      | /api/remotetemperature          |
-| 50-70-049 Celso                         | /api/celso                      |
-| 50-70-053 TH                            | /api/th                         |
-| 50-70-071 Flasho                        | /api/flasho                     |
-| 50-70-074 VAQAO+Plus                    | /api/vaqaoplus                  |
-| 50-70-085 T                             | /api/t                          |
-| 50-70-099 Atmo                          | /api/atmo                       |
-| 50-70-101 Ventilo                       | /api/ventilo                    |
-| 50-70-108 Closo                         | /api/closo                      |
-| 50-70-123 PulseSenso Atex Zone 1        | /api/pulsesensoatexz1           |
-| 50-70-139 Remote temperature 2CTN       | /api/remotetemperature2ctn      |
-| 50-70-168 VAQAO                         | /api/vaqao                      |
-| 50-70-098 Intens'O                      | /api/stdframe                   |
+| Sensor Name                             | Decoder Endpoint                |     |
+|-----------------------------------------|---------------------------------|-----|
+| 50-70-001 S0                            | /api/s0                         | [X] |
+| 50-70-007 THr harvesting                | /api/thr                        | [X] |
+| 50-70-011 Senso                         | /api/senso                      | [X] |
+| 50-70-[014/039/051/072/079] PulseSenso  | /api/pulsesenso                 | [ ] |
+| 50-70-016 Presso                        | /api/presso                     | [X] |
+| 50-70-[043/142] Remote temperature      | /api/remotetemperature          | [ ] |
+| 50-70-049 Celso                         | /api/celso                      | [ ] |
+| 50-70-053 TH                            | /api/th                         | [ ] |
+| 50-70-071 Flasho                        | /api/flasho                     | [ ] |
+| 50-70-074 VAQAO+Plus                    | /api/vaqaoplus                  | [X] |
+| 50-70-085 T                             | /api/t                          | [ ] |
+| 50-70-099 Atmo                          | /api/atmo                       | [X] |
+| 50-70-101 Ventilo                       | /api/ventilo                    | [ ] |
+| 50-70-108 Closo                         | /api/closo                      | [ ] |
+| 50-70-123 PulseSenso Atex Zone 1        | /api/pulsesensoatexz1           | [ ] |
+| 50-70-139 Remote temperature 2CTN       | /api/remotetemperature2ctn      | [ ] |
+| 50-70-168 VAQAO                         | /api/vaqao                      | [X] |
+| 50-70-098 Intens'O                      | /api/stdframe                   | [ ] |
 
 ## Deploy
 

@@ -240,3 +240,12 @@ def test_closo():
     assert json == {
             "Closed": True
         }
+
+def test_intenso():
+    response = client.get("/api/intenso?payload=MYoADABVOUEkh9LY0Q%3D%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "Current": 10.283159255981445
+        }

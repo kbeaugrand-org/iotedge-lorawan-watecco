@@ -45,10 +45,6 @@ def parseUnitaryFrame(payload: str):
 
     return json.loads(Decoding_JSON(inputData, False))
 
-@app.get("/api/stdframe")
-def S0Decoder(devEUI: str, payload: str, fport: int):
-    return parseUnitaryFrame(payload)
-
 @app.get("/api/s0")
 def S0Decoder(devEUI: str, payload: str, fport: int):
     result = parseFor(1, ['0,1,10,Pulse', '1,100,6,DisposableBatteryVoltage'], payload)
@@ -245,6 +241,17 @@ def ClosoDecoder(devEUI: str, payload: str, fport: int):
 
     if 'Closed' in result:
         result['Closed'] = bool(result['Closed'])
+
+    return result
+
+@app.get("/api/intenso")
+def IntensoDecoder(devEUI: str, payload: str, fport: int):
+    result = parseUnitaryFrame(payload)
+
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributesAlarm'and result['AttributeID'] == 'PresentValue':
+        return {
+            'Current': result['Data']
+        }
 
     return result
 

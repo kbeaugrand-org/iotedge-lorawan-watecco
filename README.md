@@ -46,7 +46,7 @@ __Current Version__ of NKE uncompress module used is __1.0.5__.
 | 50-70-123 PulseSenso Atex Zone 1        | /api/pulsesensoatexz1           | [ ] |
 | 50-70-139 Remote temperature 2CTN       | /api/remotetemperature2ctn      | [ ] |
 | 50-70-168 VAQAO                         | /api/vaqao                      | [X] |
-| 50-70-098 Intens'O                      | /api/stdframe                   | [ ] |
+| 50-70-098 Intens'O                      | /api/intenso                    | [X] |
 
 ## Deploy
 

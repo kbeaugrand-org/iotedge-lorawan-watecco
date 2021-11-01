@@ -121,7 +121,6 @@ def PulseSensoDecoder(devEUI: str, payload: str, fport: int):
     result = parseFor(4, ['0,1,10,Index1', '1,1,10,Index2', '2,1,10,Index3', '3,1,1,State1', '4,1,1,State2', '5,1,1,State3', '6,100,6,BatteryLevel', '7,1,6,MultiState'], payload)
 
     if 'CommandID' in result and result['CommandID'] == 'ReportAttributes'and result['AttributeID'] == 'PresentValue':
-
         return {
             "State{endpoint}".format(endpoint = result['EndPoint'] + 1): result['Data']
         }
@@ -153,9 +152,16 @@ def PressoDecoder(devEUI: str, payload: str, fport: int):
 
     return result
 
-@app.get("/remotetemperature")
+@app.get("/api/remotetemperature")
 def RemoteTemperatureDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(1, ['0,10,7,Temperature', '1,100,6,BatteryLevel'], payload)
+    result = parseFor(1, ['0,10,7,Temperature', '1,100,6,BatteryLevel'], payload)
+
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributes'and result['AttributeID'] == 'MeasuredValue':
+        return {
+            "Temperature": result['Data'] / 100
+        }
+
+    return result
 
 @app.get("/api/celso")
 def CelsoDecoder(devEUI: str, payload: str, fport: int):

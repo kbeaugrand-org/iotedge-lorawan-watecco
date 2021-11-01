@@ -108,3 +108,10 @@ def test_pulsesenso():
     json = response.json() 
 
     assert json == {"Index2":1}
+
+def test_remotetemperature():
+    response = client.get("/api/remotetemperature?payload=EQoEAgAAKQBk&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"Temperature": 1}

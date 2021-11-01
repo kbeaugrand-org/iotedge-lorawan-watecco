@@ -137,3 +137,17 @@ def test_th():
     json.pop('timestamp')
 
     assert json == {"Temperature": 5.17, "RelativeHumidity": 27.65, "BatteryLevel": 3.617 }
+
+def test_flasho():
+    response = client.get("/api/flasho?payload=EQoADwQCIwAAAAI%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"Index": 2}
+
+    response = client.get("/api/flasho?payload=JhUAIOBgAdceAACgZQ8%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+
+    assert json == {"Index": 45, "BatteryLevel": 3.00 }

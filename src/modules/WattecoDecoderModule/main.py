@@ -184,7 +184,15 @@ def THDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/flasho")
 def FlashoDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(1, ['0,1,10,Index', '1,100,6,BatteryLevel'], payload)
+    result = parseFor(1, ['0,1,10,Index', '1,100,6,BatteryLevel'], payload)
+
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributes'and result['AttributeID'] == 'Count':
+        return {
+            "Index": result['Data']
+        }
+
+    result['BatteryLevel'] = result['BatteryLevel'] / 1000
+    return result
 
 @app.get("/api/t")
 def TDecoder(devEUI: str, payload: str, fport: int):

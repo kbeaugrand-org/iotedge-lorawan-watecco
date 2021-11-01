@@ -131,11 +131,11 @@ def PressoDecoder(devEUI: str, payload: str, fport: int):
             }
         if result['AttributeID'] == 'PresentValue' and result['EndPoint'] == 1:
             return {
-                'mV': result['Data'] / 1000
+                'V': result['Data'] / 1000
             }
 
     result['BatteryLevel'] = result['BatteryLevel'] / 1000
-    result['mV'] = result.pop('V') / 1000
+    result['V'] = result.pop('V') / 1000
 
     return result
 

@@ -87,11 +87,11 @@ def test_presso():
     assert response.status_code == 200
     json = response.json() 
 
-    assert json == {"mV":9.524}
+    assert json == {"V":9.524}
 
     response = client.get("/api/presso?payload=IBUAgAH0ok5wgNLeAUISEPmuKVVAu2VpBA%3D%3D&devEUI=70B3D5E75E009F8F&fport=125")
     assert response.status_code == 200
     json = response.json() 
     json.pop('timestamp')
 
-    assert json == {"BatteryLevel":3.5,"mV":7.52}
+    assert json == {"BatteryLevel":3.5,"V":7.52}

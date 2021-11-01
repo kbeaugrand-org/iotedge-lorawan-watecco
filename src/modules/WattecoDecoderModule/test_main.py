@@ -156,5 +156,45 @@ def test_t():
     response = client.get("/api/th?payload=EQoEAgAAKQfQ&devEUI=70B3D5E75E009F8F&fport=125")
     assert response.status_code == 200
     json = response.json() 
-    
+
     assert json == {"Temperature": 20.0 }
+
+def test_ventilo():
+    response = client.get("/api/ventilo?payload=EQoEAgAAKQfQ&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "Temperature": 20
+        }
+
+    response = client.get("/api/ventilo?payload=EQqACAAAKQGQ&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "DifferentialPressure": 400
+        }
+
+    response = client.get("/api/ventilo?payload=RjEAAAGzBkjsATiyByDQHqBmAQ%3D%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+    
+    assert json == {
+            "MeanDifferentialPressureSinceLastReport": 28,
+            "MinimalDifferentialPressureSinceLastReport": 4,
+            "MaximalDifferentialPressureSinceLastReport": 53,
+            "BatteryLevel": 3.472
+        }
+
+    response = client.get("/api/ventilo?payload=NgcAgAD3gMPsAdi1FxBZAA%3D%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+    
+    assert json == {
+        "MeanDifferentialPressureSinceLastReport": 391,
+        "MinimalDifferentialPressureSinceLastReport": 236,
+        "MaximalDifferentialPressureSinceLastReport": 546
+        }

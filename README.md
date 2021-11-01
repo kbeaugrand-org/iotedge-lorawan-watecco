@@ -41,7 +41,7 @@ __Current Version__ of NKE uncompress module used is __1.0.5__.
 | 50-70-074 VAQAO+Plus                    | /api/vaqaoplus                  | [X] |
 | 50-70-085 T                             | /api/t                          | [X] |
 | 50-70-099 Atmo                          | /api/atmo                       | [X] |
-| 50-70-101 Ventilo                       | /api/ventilo                    | [ ] |
+| 50-70-101 Ventilo                       | /api/ventilo                    | [X] |
 | 50-70-108 Closo                         | /api/closo                      | [ ] |
 | 50-70-123 PulseSenso Atex Zone 1        | /api/pulsesensoatexz1           | [ ] |
 | 50-70-139 Remote temperature 2CTN       | /api/remotetemperature2ctn      | [ ] |

@@ -214,8 +214,20 @@ def AtmoDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/ventilo")
 def VentiloDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(3, ['0,1,7,Mean_differential_pressure_since_last_report', '1,1,7,Minimal_differential_pressure_since_last_report', '2,1,7,Maximal_differential_pressure_since_last_report', '3,1,6,BatteryLevel', '4,10,7,Temperature', '5,1,7,DifferentialPressure', '6,1,10,Index', '7,1,1,State'], payload)
+    result = parseFor(3, ['0,1,7,MeanDifferentialPressureSinceLastReport', '1,1,7,MinimalDifferentialPressureSinceLastReport', '2,1,7,MaximalDifferentialPressureSinceLastReport', '3,1,6,BatteryLevel', '4,10,7,Temperature', '5,1,7,DifferentialPressure', '6,1,10,Index', '7,1,1,State'], payload)
+    
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributes'and result['AttributeID'] == 'MeasuredValue':
+        result = {
+            result['ClusterID']: result['Data'] 
+        }
 
+    if 'BatteryLevel' in result:
+        result['BatteryLevel'] = result['BatteryLevel'] / 1000
+    
+    if 'Temperature' in result:
+        result['Temperature'] = result['Temperature'] / 100
+
+    return result
 @app.get("/api/closo")
 def ClosoDecoder(devEUI: str, payload: str, fport: int):
     return parseFor(2, ['0,1,1,OpenClose', '1,100,6,BatteryLevel'], payload)

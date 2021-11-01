@@ -228,9 +228,25 @@ def VentiloDecoder(devEUI: str, payload: str, fport: int):
         result['Temperature'] = result['Temperature'] / 100
 
     return result
+
 @app.get("/api/closo")
 def ClosoDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(2, ['0,1,1,OpenClose', '1,100,6,BatteryLevel'], payload)
+    result = parseFor(2, ['0,1,1,Closed', '1,100,6,BatteryLevel'], payload)
+
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributes'and result['AttributeID'] == 'PresentValue':
+        clusterName = 'Closed'
+
+        if result['EndPoint'] == 0:
+            clusterName = 'CaseStatus'
+
+        return {
+            clusterName: result['Data'] 
+        }
+
+    if 'Closed' in result:
+        result['Closed'] = bool(result['Closed'])
+
+    return result
 
 @app.get("/api/pulsesensoatexz1")
 def PulseSensoAtexZ1Decoder(devEUI: str, payload: str, fport: int):

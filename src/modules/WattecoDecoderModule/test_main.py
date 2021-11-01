@@ -198,3 +198,45 @@ def test_ventilo():
         "MinimalDifferentialPressureSinceLastReport": 236,
         "MaximalDifferentialPressureSinceLastReport": 546
         }
+
+def test_closo():
+    response = client.get("/api/closo?payload=EQoADwBVEAA%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "CaseStatus": False # Teard Off
+        }
+
+    response = client.get("/api/closo?payload=EQoADwBVEAE%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "CaseStatus": True # OK
+        }
+
+    response = client.get("/api/closo?payload=MQoADwBVEAA%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "Closed": False
+        }
+
+    response = client.get("/api/closo?payload=MQoADwBVEAE%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "Closed": True
+        }
+
+    response = client.get("/api/closo?payload=EAMAQd12wMCAAxS0cAgdwCcZBwQwpbxrzAE%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+    
+    assert json == {
+            "Closed": True
+        }

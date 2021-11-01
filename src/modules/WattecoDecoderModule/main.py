@@ -255,10 +255,6 @@ def IntensoDecoder(devEUI: str, payload: str, fport: int):
 
     return result
 
-@app.get("/api/pulsesensoatexz1")
-def PulseSensoAtexZ1Decoder(devEUI: str, payload: str, fport: int):
-    return parseFor(4, ['0,1,10,Index1', '1,1,10,Index2', '2,1,10,Index3', '3,1,1,State1', '4,1,1,State2', '5,1,1,State3', '6,100,6,BatteryLevel', '7,1,6,MultiState'], payload)
-
 @app.get("/api/remotetemperature2ctn")
 def RemoteTemperature2CTNDecoder(devEUI: str, payload: str, fport: int):
     return parseFor(3, ['0,10,7,Temperature1', '1,10,7,Temperature2'], payload)

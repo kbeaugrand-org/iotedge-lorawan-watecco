@@ -118,7 +118,21 @@ def SensoDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/pulsesenso")
 def PulseSensoDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(4, ['0,1,10,Index1', '1,1,10,Index2', '2,1,10,Index3', '3,1,1,State1', '4,1,1,State2', '5,1,1,State3', '6,100,6,BatteryLevel', '7,1,6,MultiState'], payload)
+    result = parseFor(4, ['0,1,10,Index1', '1,1,10,Index2', '2,1,10,Index3', '3,1,1,State1', '4,1,1,State2', '5,1,1,State3', '6,100,6,BatteryLevel', '7,1,6,MultiState'], payload)
+
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributes'and result['AttributeID'] == 'PresentValue':
+
+        return {
+            "State{endpoint}".format(endpoint = result['EndPoint'] + 1): result['Data']
+        }
+    
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributes'and result['AttributeID'] == 'Count': 
+        return {
+            "Index{endpoint}".format(endpoint = result['EndPoint'] + 1): result['Data']
+        }
+    
+    return result
+
 
 @app.get("/api/presso")
 def PressoDecoder(devEUI: str, payload: str, fport: int):

@@ -32,7 +32,7 @@ __Current Version__ of NKE uncompress module used is __1.0.5__.
 | 50-70-001 S0                            | /api/s0                         | [X] |
 | 50-70-007 THr harvesting                | /api/thr                        | [X] |
 | 50-70-011 Senso                         | /api/senso                      | [X] |
-| 50-70-[014/039/051/072/079] PulseSenso  | /api/pulsesenso                 | [ ] |
+| 50-70-[014/039/051/072/079] PulseSenso  | /api/pulsesenso                 | [X] |
 | 50-70-016 Presso                        | /api/presso                     | [X] |
 | 50-70-[043/142] Remote temperature      | /api/remotetemperature          | [ ] |
 | 50-70-049 Celso                         | /api/celso                      | [ ] |

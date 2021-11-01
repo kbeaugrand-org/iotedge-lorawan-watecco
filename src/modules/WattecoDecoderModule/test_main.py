@@ -95,3 +95,16 @@ def test_presso():
     json.pop('timestamp')
 
     assert json == {"BatteryLevel":3.5,"V":7.52}
+
+def test_pulsesenso():
+    response = client.get("/api/pulsesenso?payload=EQoADwBVEAE%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"State1": True}
+
+    response = client.get("/api/pulsesenso?payload=MQoADwQCIwAAAAE%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"Index2":1}

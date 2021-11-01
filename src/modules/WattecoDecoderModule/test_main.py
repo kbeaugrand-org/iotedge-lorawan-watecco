@@ -151,3 +151,10 @@ def test_flasho():
     json.pop('timestamp')
 
     assert json == {"Index": 45, "BatteryLevel": 3.00 }
+
+def test_t():
+    response = client.get("/api/th?payload=EQoEAgAAKQfQ&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {"Temperature": 20.0 }

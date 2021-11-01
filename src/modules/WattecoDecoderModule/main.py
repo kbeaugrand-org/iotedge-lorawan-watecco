@@ -179,6 +179,11 @@ def CelsoDecoder(devEUI: str, payload: str, fport: int):
 def THDecoder(devEUI: str, payload: str, fport: int):
     result = parseFor(2, ['0,10,7,Temperature', '1,100,6,RelativeHumidity', '2,1,6,BatteryLevel', '3,1,1,OpenCase'], payload)
 
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributes'and result['AttributeID'] == 'MeasuredValue':
+        return{
+            "Temperature": result['Data'] / 100
+        }
+
     result['BatteryLevel'] = result['BatteryLevel'] / 1000
     return result
 
@@ -196,7 +201,7 @@ def FlashoDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/t")
 def TDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(2, ['0,10,7,Temperature', '2,1,6,BatteryLevel', '3,1,1,OpenCase'], payload)
+    return THDecoder(devEUI, payload, fport)
 
 @app.get("/api/atmo")
 def AtmoDecoder(devEUI: str, payload: str, fport: int):

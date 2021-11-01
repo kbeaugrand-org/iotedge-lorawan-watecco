@@ -39,7 +39,7 @@ __Current Version__ of NKE uncompress module used is __1.0.5__.
 | 50-70-053 TH                            | /api/th                         | [X] |
 | 50-70-071 Flasho                        | /api/flasho                     | [X] |
 | 50-70-074 VAQAO+Plus                    | /api/vaqaoplus                  | [X] |
-| 50-70-085 T                             | /api/t                          | [ ] |
+| 50-70-085 T                             | /api/t                          | [X] |
 | 50-70-099 Atmo                          | /api/atmo                       | [X] |
 | 50-70-101 Ventilo                       | /api/ventilo                    | [ ] |
 | 50-70-108 Closo                         | /api/closo                      | [ ] |

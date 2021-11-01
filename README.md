@@ -36,7 +36,7 @@ __Current Version__ of NKE uncompress module used is __1.0.5__.
 | 50-70-123 PulseSenso Atex Zone 1        | /api/pulsesenso                 | [X] |
 | 50-70-016 Presso                        | /api/presso                     | [X] |
 | 50-70-[043/142] Remote temperature      | /api/remotetemperature          | [X] |
-| 50-70-139 Remote temperature 2CTN       | /api/remotetemperature2ctn      | [ ] |
+| 50-70-139 Remote temperature 2CTN       | /api/remotetemperature2ctn      | [X] |
 | 50-70-049 Celso                         | /api/celso                      | [X] |
 | 50-70-053 TH                            | /api/th                         | [X] |
 | 50-70-071 Flasho                        | /api/flasho                     | [X] |

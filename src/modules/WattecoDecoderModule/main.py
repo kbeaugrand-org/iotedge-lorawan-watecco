@@ -257,7 +257,18 @@ def IntensoDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/remotetemperature2ctn")
 def RemoteTemperature2CTNDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(3, ['0,10,7,Temperature1', '1,10,7,Temperature2'], payload)
+    result = parseFor(3, ['0,10,7,Temperature1', '1,10,7,Temperature2'], payload)
+
+    if 'Temperature1' in result:
+        result['Temperature1'] = result['Temperature1'] / 100
+    
+    if 'Temperature2' in result:
+        result['Temperature2'] = result['Temperature2'] / 100
+        
+    if 'BatteryLevel' in result:
+        result['BatteryLevel'] = result['BatteryLevel'] / 1000
+
+    return result
 
 @app.get("/api/vaqao")
 def VAQAODecoder(devEUI: str, payload: str, fport: int):

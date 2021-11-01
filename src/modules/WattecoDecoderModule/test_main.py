@@ -249,3 +249,14 @@ def test_intenso():
     assert json == {
             "Current": 10.283159255981445
         }
+
+def test_remotetemperature2ctn():
+    response = client.get("/api/remotetemperature2ctn?payload=IgUAEDVcBLPInoAODCAAWQHICkBWALICkIUkSZLqdDgA&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+    
+    assert json == {
+            "Temperature1": 21.5,
+            "Temperature2": 11.5
+        }

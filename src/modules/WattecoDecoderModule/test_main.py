@@ -129,3 +129,11 @@ def test_celso():
     json.pop('timestamp')
 
     assert json == {"Temperature": 24.00}
+
+def test_th():
+    response = client.get("/api/th?payload=MgIAAEGYwI20V2gO%2Fw4hIQD55JYoKw%3D%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+
+    assert json == {"Temperature": 5.17, "RelativeHumidity": 27.65, "BatteryLevel": 3.617 }

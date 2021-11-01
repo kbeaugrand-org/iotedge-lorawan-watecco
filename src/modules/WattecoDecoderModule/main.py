@@ -177,7 +177,10 @@ def CelsoDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/th")
 def THDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(2, ['0,10,7,Temperature', '1,100,6,RelativeHumidity', '2,1,6,BatteryLevel', '3,1,1,OpenCase'], payload)
+    result = parseFor(2, ['0,10,7,Temperature', '1,100,6,RelativeHumidity', '2,1,6,BatteryLevel', '3,1,1,OpenCase'], payload)
+
+    result['BatteryLevel'] = result['BatteryLevel'] / 1000
+    return result
 
 @app.get("/api/flasho")
 def FlashoDecoder(devEUI: str, payload: str, fport: int):

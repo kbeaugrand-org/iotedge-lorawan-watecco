@@ -35,7 +35,7 @@ __Current Version__ of NKE uncompress module used is __1.0.5__.
 | 50-70-[014/039/051/072/079] PulseSenso  | /api/pulsesenso                 | [X] |
 | 50-70-016 Presso                        | /api/presso                     | [X] |
 | 50-70-[043/142] Remote temperature      | /api/remotetemperature          | [X] |
-| 50-70-049 Celso                         | /api/celso                      | [ ] |
+| 50-70-049 Celso                         | /api/celso                      | [X] |
 | 50-70-053 TH                            | /api/th                         | [ ] |
 | 50-70-071 Flasho                        | /api/flasho                     | [ ] |
 | 50-70-074 VAQAO+Plus                    | /api/vaqaoplus                  | [X] |

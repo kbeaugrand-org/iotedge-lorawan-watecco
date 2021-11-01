@@ -115,3 +115,17 @@ def test_remotetemperature():
     json = response.json() 
 
     assert json == {"Temperature": 1}
+
+def test_celso():
+    response = client.get("/api/celso?payload=EQoEAgAAKQdh&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"Temperature": 18.89}
+
+    response = client.get("/api/celso?payload=EAFAgDY0AQwMtHuhdy%2FU7oUM&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+
+    assert json == {"Temperature": 24.00}

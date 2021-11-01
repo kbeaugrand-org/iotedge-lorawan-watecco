@@ -165,7 +165,15 @@ def RemoteTemperatureDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/celso")
 def CelsoDecoder(devEUI: str, payload: str, fport: int):
-    return parseFor(1, ['0,10,7,Temperature', '1,100,6,BatteryLevel'], payload)
+    result = parseFor(1, ['0,10,7,Temperature', '1,100,6,BatteryLevel'], payload)
+
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributes'and result['AttributeID'] == 'MeasuredValue':
+        return {
+            "Temperature": result['Data'] / 100
+        }
+
+
+    return result
 
 @app.get("/api/th")
 def THDecoder(devEUI: str, payload: str, fport: int):

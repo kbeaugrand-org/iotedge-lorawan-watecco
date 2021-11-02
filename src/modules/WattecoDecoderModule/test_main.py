@@ -95,3 +95,168 @@ def test_presso():
     json.pop('timestamp')
 
     assert json == {"BatteryLevel":3.5,"V":7.52}
+
+def test_pulsesenso():
+    response = client.get("/api/pulsesenso?payload=EQoADwBVEAE%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"State1": True}
+
+    response = client.get("/api/pulsesenso?payload=MQoADwQCIwAAAAE%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"Index2":1}
+
+def test_remotetemperature():
+    response = client.get("/api/remotetemperature?payload=EQoEAgAAKQBk&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"Temperature": 1}
+
+def test_celso():
+    response = client.get("/api/celso?payload=EQoEAgAAKQdh&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"Temperature": 18.89}
+
+    response = client.get("/api/celso?payload=EAFAgDY0AQwMtHuhdy%2FU7oUM&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+
+    assert json == {"Temperature": 24.00}
+
+def test_th():
+    response = client.get("/api/th?payload=MgIAAEGYwI20V2gO%2Fw4hIQD55JYoKw%3D%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+
+    assert json == {"Temperature": 5.17, "RelativeHumidity": 27.65, "BatteryLevel": 3.617 }
+
+def test_flasho():
+    response = client.get("/api/flasho?payload=EQoADwQCIwAAAAI%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"Index": 2}
+
+    response = client.get("/api/flasho?payload=JhUAIOBgAdceAACgZQ8%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+
+    assert json == {"Index": 45, "BatteryLevel": 3.00 }
+
+def test_t():
+    response = client.get("/api/th?payload=EQoEAgAAKQfQ&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {"Temperature": 20.0 }
+
+def test_ventilo():
+    response = client.get("/api/ventilo?payload=EQoEAgAAKQfQ&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "Temperature": 20
+        }
+
+    response = client.get("/api/ventilo?payload=EQqACAAAKQGQ&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "DifferentialPressure": 400
+        }
+
+    response = client.get("/api/ventilo?payload=RjEAAAGzBkjsATiyByDQHqBmAQ%3D%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+    
+    assert json == {
+            "MeanDifferentialPressureSinceLastReport": 28,
+            "MinimalDifferentialPressureSinceLastReport": 4,
+            "MaximalDifferentialPressureSinceLastReport": 53,
+            "BatteryLevel": 3.472
+        }
+
+    response = client.get("/api/ventilo?payload=NgcAgAD3gMPsAdi1FxBZAA%3D%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+    
+    assert json == {
+        "MeanDifferentialPressureSinceLastReport": 391,
+        "MinimalDifferentialPressureSinceLastReport": 236,
+        "MaximalDifferentialPressureSinceLastReport": 546
+        }
+
+def test_closo():
+    response = client.get("/api/closo?payload=EQoADwBVEAA%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "CaseStatus": False # Teard Off
+        }
+
+    response = client.get("/api/closo?payload=EQoADwBVEAE%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "CaseStatus": True # OK
+        }
+
+    response = client.get("/api/closo?payload=MQoADwBVEAA%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "Closed": False
+        }
+
+    response = client.get("/api/closo?payload=MQoADwBVEAE%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "Closed": True
+        }
+
+    response = client.get("/api/closo?payload=EAMAQd12wMCAAxS0cAgdwCcZBwQwpbxrzAE%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+    
+    assert json == {
+            "Closed": True
+        }
+
+def test_intenso():
+    response = client.get("/api/intenso?payload=MYoADABVOUEkh9LY0Q%3D%3D&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    
+    assert json == {
+            "Current": 10.283159255981445
+        }
+
+def test_remotetemperature2ctn():
+    response = client.get("/api/remotetemperature2ctn?payload=IgUAEDVcBLPInoAODCAAWQHICkBWALICkIUkSZLqdDgA&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+    json.pop('timestamp')
+    
+    assert json == {
+            "Temperature1": 21.5,
+            "Temperature2": 11.5
+        }

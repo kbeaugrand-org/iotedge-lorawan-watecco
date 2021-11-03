@@ -2,7 +2,7 @@
 # Azure IoT Edge LoRaWAN Watteco Sensors Support
 
 [![Build](https://github.com/kbeaugrand-org/iotedge-lorawan-watteco/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kbeaugrand-org/iotedge-lorawan-watteco/actions/workflows/ci.yml)
-[![Continuous Deployment](https://github.com/kbeaugrand-org/iotedge-lorawan-watteco/actions/workflows/cd.yml/badge.svg?branch=main)](https://github.com/kbeaugrand-org/iotedge-lorawan-watteco/actions/workflows/cd.yml)
+[![Continuous Deployment](https://github.com/kbeaugrand-org/iotedge-lorawan-watteco/actions/workflows/cd.yml/badge.svg)](https://github.com/kbeaugrand-org/iotedge-lorawan-watteco/actions/workflows/cd.yml)
 
 ## Description
 

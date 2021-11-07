@@ -22,6 +22,19 @@ def test_vaqaoplus():
 
     assert json == {"Occupancy":1,"Temperature":19.7,"RelativeHumidity":54.0,"CO2":690.0,"COV":50.0,"LUX":10,"Pressure":9790}
 
+    response = client.get("/api/vaqaoplus?payload=EQoAUAAGQQUBBAwWBJg=&devEUI=70B3D5E75E009F8F&fport=125")
+    assert response.status_code == 200
+    json = response.json() 
+
+    assert json == {
+        'Configuration': {
+            "CurrentPowerMode": "PeriodicallyON",
+            "AvailablePowerSourceBitField": 4,
+            "DisposableBatteryVoltage": 3094,
+            "CurrentPowerSource": "DisposableBattery"
+        }
+    }
+
 def test_vaqao():
     response = client.get("/api/vaqao?payload=QjOAgKhPAR2g6ADckf2BU2j3QgYOUWgv%2BmYm%2BtaSFn1rSYu%2BmESxRVEUFXFoniAUmxk%3D&devEUI=70B3D5E75E009F8F&fport=125")
     assert response.status_code == 200

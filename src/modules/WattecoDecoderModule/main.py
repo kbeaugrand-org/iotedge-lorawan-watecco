@@ -28,12 +28,6 @@ def parseFor(tagz: int, commands, payload: str):
             value = x["data"]["value"]
             label = x["data"]["label_name"]
 
-            if (label ==  "Temperature"):
-                value = value / 100
-
-            if (label ==  "RelativeHumidity"):
-                value = value / 100
-
             result[label] = value
       
         return result
@@ -79,11 +73,20 @@ def S0Decoder(devEUI: str, payload: str, fport: int):
 def THRDecoder(devEUI: str, payload: str, fport: int):
     result = parseFor(3, ['0,10,7,Temperature', '1,100,6,RelativeHumidity', ' 2,10,12,Illuminance', '3,100,6,DisposableBatteryVoltage', '4,100,6,RechargeableBatteryVoltage'], payload)
     
-    if 'AnalogInput' in result.keys():
+    if 'AnalogInput' in result:
         result['Illuminance'] = result.pop('AnalogInput')
 
-    result['DisposableBatteryVoltage'] = result['DisposableBatteryVoltage'] / 1000
-    result['RechargeableBatteryVoltage'] = result['RechargeableBatteryVoltage'] / 1000
+    if 'DisposableBatteryVoltage' in result:
+        result['DisposableBatteryVoltage'] = result['DisposableBatteryVoltage'] / 1000
+
+    if 'RechargeableBatteryVoltage' in result:
+        result['RechargeableBatteryVoltage'] = result['RechargeableBatteryVoltage'] / 1000
+
+    if 'Temperature' in result:
+        result['Temperature'] = result['Temperature'] / 100
+
+    if 'RelativeHumidity' in result:
+        result['RelativeHumidity'] = result['RelativeHumidity'] / 100
 
     return result
 @app.get("/api/senso")
@@ -168,6 +171,12 @@ def CelsoDecoder(devEUI: str, payload: str, fport: int):
             "Temperature": result['Data'] / 100
         }
 
+    if 'Temperature' in result:
+        result['Temperature'] = result['Temperature'] / 100
+
+    if 'RelativeHumidity' in result:
+        result['RelativeHumidity'] = result['RelativeHumidity'] / 100
+
 
     return result
 
@@ -176,11 +185,19 @@ def THDecoder(devEUI: str, payload: str, fport: int):
     result = parseFor(2, ['0,10,7,Temperature', '1,100,6,RelativeHumidity', '2,1,6,BatteryLevel', '3,1,1,OpenCase'], payload)
 
     if 'CommandID' in result and result['CommandID'] == 'ReportAttributes'and result['AttributeID'] == 'MeasuredValue':
-        return{
+        return {
             "Temperature": result['Data'] / 100
         }
 
-    result['BatteryLevel'] = result['BatteryLevel'] / 1000
+    if 'BatteryLevel' in result: 
+        result['BatteryLevel'] = result['BatteryLevel'] / 1000
+
+    if 'Temperature' in result:
+        result['Temperature'] = result['Temperature'] / 100
+
+    if 'RelativeHumidity' in result:
+        result['RelativeHumidity'] = result['RelativeHumidity'] / 100
+
     return result
 
 @app.get("/api/flasho")
@@ -205,6 +222,12 @@ def AtmoDecoder(devEUI: str, payload: str, fport: int):
 
     result.pop('Index1')
     result.pop('Index2')
+
+    if 'Temperature' in result:
+        result['Temperature'] = result['Temperature'] / 100
+
+    if 'RelativeHumidity' in result:
+        result['RelativeHumidity'] = result['RelativeHumidity'] / 100
 
     return result
 
@@ -272,10 +295,34 @@ def RemoteTemperature2CTNDecoder(devEUI: str, payload: str, fport: int):
 
 @app.get("/api/vaqao")
 def VAQAODecoder(devEUI: str, payload: str, fport: int):
-    frame = parseFor(3, ['1,10,7,Temperature' ,'2,100,6,RelativeHumidity', '3,10,6,CO2', '4,10,6,COV'], payload)
-    return frame
+    result = parseFor(3, ['1,10,7,Temperature' ,'2,100,6,RelativeHumidity', '3,10,6,CO2', '4,10,6,COV'], payload)
+
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributesAlarm'and result['AttributeID'] == 'MeasuredValue':
+        result = {
+            result['ClusterID']: result['Data']
+        }
+    
+    if 'Temperature' in result:
+        result['Temperature'] = result['Temperature'] / 100
+
+    if 'RelativeHumidity' in result:
+        result['RelativeHumidity'] = result['RelativeHumidity'] / 100
+
+    return result
 
 @app.get("/api/vaqaoplus")
 def VAQAOPlusDecoder(devEUI: str, payload: str, fport: int):
-    frame = parseFor(3, ['0,1,4,Occupancy', '1,10,7,Temperature', '2,100,6,RelativeHumidity', '3,10,6,CO2', '4,10,6,COV', '5,10,6,LUX', '6,10,6,Pressure'], payload)
-    return frame
+    result = parseFor(3, ['0,1,4,Occupancy', '1,10,7,Temperature', '2,100,6,RelativeHumidity', '3,10,6,CO2', '4,10,6,COV', '5,10,6,LUX', '6,10,6,Pressure'], payload)
+    
+    if 'CommandID' in result and result['CommandID'] == 'ReportAttributesAlarm'and result['AttributeID'] == 'MeasuredValue':
+        result = {
+            result['ClusterID']: result['Data']
+        }
+    
+    if 'Temperature' in result:
+        result['Temperature'] = result['Temperature'] / 100
+
+    if 'RelativeHumidity' in result:
+        result['RelativeHumidity'] = result['RelativeHumidity'] / 100
+
+    return result

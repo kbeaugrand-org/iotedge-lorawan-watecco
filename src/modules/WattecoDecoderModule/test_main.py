@@ -5,6 +5,16 @@ from .main import app
 client = TestClient(app)
 
 def test_vaqaoplus():
+    response = client.get("/api/vaqaoplus?devEUI=70B3D5E75E009F8F&fport=125&payload=EYqADAAAIQAZmLA=")
+    assert response.status_code == 200
+    json = response.json()
+    assert json == {"Concentration": 25}
+
+    response = client.get("/api/vaqaoplus?devEUI=70B3D5E75E009F8F&fport=125&payload=MYoEAgAAKQhnmNCx")
+    assert response.status_code == 200
+    json = response.json()
+    assert json == {"Temperature": 21.51}
+
     response = client.get("/api/vaqaoplus?payload=cEQABqw8ABnA7s4BIGEpaCPjgWxsEdBJGyY%2B0d0bABSCAu1eqN2yDAAFtJuXArCAdsuyBigAOA%3D%3D&devEUI=70B3D5E75E009F8F&fport=125")
     assert response.status_code == 200
     json = response.json() 

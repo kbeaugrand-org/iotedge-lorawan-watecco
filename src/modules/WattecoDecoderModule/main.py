@@ -325,4 +325,7 @@ def VAQAOPlusDecoder(devEUI: str, payload: str, fport: int):
     if 'RelativeHumidity' in result:
         result['RelativeHumidity'] = result['RelativeHumidity'] / 100
 
+    if 'Configuration' in result and 'DisposableBatteryVoltage' in result['Configuration']:
+        result['Configuration']['DisposableBatteryVoltage'] = result['Configuration']['DisposableBatteryVoltage'] / 1000
+
     return result

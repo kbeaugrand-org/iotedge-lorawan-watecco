@@ -30,7 +30,7 @@ def test_vaqaoplus():
         'Configuration': {
             "CurrentPowerMode": "PeriodicallyON",
             "AvailablePowerSourceBitField": 4,
-            "DisposableBatteryVoltage": 3094,
+            "DisposableBatteryVoltage": 3.094,
             "CurrentPowerSource": "DisposableBattery"
         }
     }

@@ -314,11 +314,11 @@ def VAQAODecoder(devEUI: str, payload: str, fport: int):
 def VAQAOPlusDecoder(devEUI: str, payload: str, fport: int):
     result = parseFor(3, ['0,1,4,Occupancy', '1,10,7,Temperature', '2,100,6,RelativeHumidity', '3,10,6,CO2', '4,10,6,COV', '5,10,6,LUX', '6,10,6,Pressure'], payload)
     
-    if 'CommandID' in result and result['CommandID'] == 'ReportAttributesAlarm'and result['AttributeID'] == 'MeasuredValue':
+    if 'CommandID' in result and (result['CommandID'] == 'ReportAttributes' or result['CommandID'] == 'ReportAttributesAlarm'):
         result = {
             result['ClusterID']: result['Data']
         }
-    
+
     if 'Temperature' in result:
         result['Temperature'] = result['Temperature'] / 100
 

@@ -96,3 +96,4 @@ curl --location --request GET 'http://localhost:8080/api/vaquaoplus?payload=cjAA
 
 * [https://support.nke-watteco.com/](https://support.nke-watteco.com/)
 * [https://github.com/Azure/iotedge-lorawan-starterkit](https://github.com/Azure/iotedge-lorawan-starterkit)
+* [https://github.com/Azure/opendigitaltwins-dtdl/blob/master/DTDL/v2/dtdlv2.md](https://github.com/Azure/opendigitaltwins-dtdl/blob/master/DTDL/v2/dtdlv2.md)
